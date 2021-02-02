@@ -138,4 +138,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPositionLeft: {fileID: 7422238858813243114}
   spawnPositionRight: {fileID: 7422238857387545270}
-  enemyPrefab: {fileID: 4377966111935240817, guid: 4cf28a08a3913254faff6d01ddeac9c7, type: 3}
+  enemyPrefab: {fileID: 2131482842444219271, guid: db32085017e78834fb8ea67bb9c50573, type: 3}
+  numberOfEnemies: 0

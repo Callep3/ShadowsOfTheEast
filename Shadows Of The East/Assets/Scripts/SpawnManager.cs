@@ -19,19 +19,12 @@ public class SpawnManager : MonoBehaviour
             Instance = this;
         else if (Instance != this)
             Destroy(gameObject);
-        
-        DontDestroyOnLoad(this);
     }
     #endregion
     
     #region Testing
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SpawnEnemy();
-        }
-
         if (Input.GetKeyDown(KeyCode.B))
         {
             numberOfEnemies--;
@@ -44,6 +37,7 @@ public class SpawnManager : MonoBehaviour
     {
         numberOfEnemies++;
         ChooseSpawnPoint();
+        GameManager.Instance.UpdateEnemiesLeftText();
     }
 
     private void ChooseSpawnPoint()
