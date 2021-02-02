@@ -97,8 +97,17 @@ public class Enemy : MonoBehaviour, IDamagable
         if (currentHealth - Damage > 0)
             currentHealth -= Damage;
         else
+        { 
             //aniamtion
+
+            GameObject powerup = PowerupManager.Instance.GetDrop();
+            if (powerup != null)
+            {
+                Instantiate(powerup, transform.position, Quaternion.identity);
+            }
+
             Destroy(gameObject);
+        }
     }
 
 
