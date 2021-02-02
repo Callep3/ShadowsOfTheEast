@@ -4,11 +4,26 @@ using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour
 {
+    public static SpawnManager Instance = null;
+    
     public GameObject spawnPositionLeft;
     public GameObject spawnPositionRight;
     public GameObject enemyPrefab;
-    private bool LeftOrRightSpawnPoint;
 
+    public int numberOfEnemies = 0;
+
+    #region Singleton
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else if (Instance != this)
+            Destroy(gameObject);
+        
+        DontDestroyOnLoad(this);
+    }
+    #endregion
+    
     #region Testing
     private void Update()
     {
@@ -16,12 +31,18 @@ public class SpawnManager : MonoBehaviour
         {
             SpawnEnemy();
         }
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            numberOfEnemies--;
+        }
     }
     #endregion
 
     #region SpawnCode
     public void SpawnEnemy()
     {
+        numberOfEnemies++;
         ChooseSpawnPoint();
     }
 
