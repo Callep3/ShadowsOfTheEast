@@ -98,7 +98,22 @@ public class Enemy : MonoBehaviour, IDamagable
             currentHealth -= Damage;
         else
             //aniamtion
-            Destroy(gameObject);
+            Die();
+    }
+
+    private void Die()
+    {
+        SpawnManager.Instance.numberOfEnemies--;
+        GameManager.Instance.UpdateEnemiesLeftText();
+        if (SpawnManager.Instance.numberOfEnemies <= 0)
+        {
+            GameManager.Instance.NextWave();
+            if (GameManager.Instance.doneSpawning)
+            {
+                GameManager.Instance.doneSpawning = false;
+            }
+        }
+        Destroy(gameObject);
     }
 
 
