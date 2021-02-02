@@ -724,6 +724,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5314770036059409765, guid: ba15e08139986f14b8a4b6879e8b6578, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419753988144869865, guid: ba15e08139986f14b8a4b6879e8b6578, type: 3}
+      propertyPath: Shuriken
+      value: 
+      objectReference: {fileID: 2522925430764436367, guid: 09ecc44783c6ce644aeb07f7b5cd6676, type: 3}
+    - target: {fileID: 8419753988144869865, guid: ba15e08139986f14b8a4b6879e8b6578, type: 3}
+      propertyPath: shuriken
+      value: 
+      objectReference: {fileID: 2522925430764436367, guid: 09ecc44783c6ce644aeb07f7b5cd6676, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba15e08139986f14b8a4b6879e8b6578, type: 3}
 --- !u!1001 &4564733073776617837

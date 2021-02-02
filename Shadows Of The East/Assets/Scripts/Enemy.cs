@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDamagable
 {
     [SerializeField] private float speed;
     [SerializeField] private float attackSpeed = 2; //Seconds
@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
 
     private GameObject player;
 
+    [SerializeField] private int attackDamage = 2;
     private float hitCooldown = 0;
     private float attackTime = 0;
     private float attackDistance;
@@ -86,15 +87,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (hitCooldown >= 1 && collision.gameObject.CompareTag("Sword"))
-        {
-            GetHit(3f);
-        }
-    }
-
-    private void GetHit(float Damage)
+    public void TakeDamage(int Damage)
     {
         if (currentHealth > maxHealth)
         {
@@ -126,7 +119,7 @@ public class Enemy : MonoBehaviour
         if (hit2D.collider != null)
             if (hit2D.collider.CompareTag("Player"))
             {
-                //hit2D.collider.GetComponent<PlayerHealth>().ChangeHealth(-0.5f);
+                hit2D.collider.GetComponent<IDamagable>().TakeDamage(attackDamage);
             }
     }
 }
