@@ -12,21 +12,30 @@ public class PlayerMovement : MonoBehaviour
     private float PlayerPositionX;
     private Rigidbody2D rigidBody;
 
+    [Header("Stamina Settings")]
+    [SerializeField] private int maxStamina = 100;
+    [SerializeField] private int staminaPerSecond = 5;
+    private int stamina;
     [Header("Movement settings")]
     [SerializeField] private float speed = 20f;
     [Header("Dash settings")]
     [SerializeField] private float dashDistance = 20f;
     [SerializeField] private float dashCooldown = 4f;
+    [SerializeField] private int dashStaminaCost = 25;    
     private float dashCooldownTimer = 0;
     private float lastDirection = 1;
     [Header("Jump settings")]
     [SerializeField] private float jumpForce = 2f;
     [SerializeField] private LayerMask groundLayers;
-    private float jumpBuffer;
+    private float jumpBuffer = 0;
+    private float extraSpeed = 0;
+    private int staminaReduction = 0;
+    private float staminaRechargeTimer;
 
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        stamina = maxStamina;
     }
     private void Update()
     {
@@ -47,6 +56,13 @@ public class PlayerMovement : MonoBehaviour
     {
         dashCooldownTimer -= Time.deltaTime;
         jumpBuffer -= Time.deltaTime;
+
+        staminaRechargeTimer += Time.deltaTime;
+        if (staminaRechargeTimer >= 1f)
+        {
+            stamina += staminaPerSecond;
+            staminaRechargeTimer = 0;
+        }
     }
 
     private void UpdateJump()
@@ -68,11 +84,25 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateDash()
     {   
-        if (dashCooldownTimer <= 0 && Input.GetAxis("Dash") > 0)
+        if (dashCooldownTimer <= 0 && Input.GetAxis("Dash") > 0 && EnoughStaminaToDash())
         {
             PlayerPositionX += lastDirection * dashDistance;
 
             dashCooldownTimer = dashCooldown;
+            stamina -= dashStaminaCost;
+        }
+    }
+
+    private bool EnoughStaminaToDash()
+    {
+        int dashCost = dashStaminaCost - staminaReduction;
+        if (stamina >= dashCost)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
     private void UpdatePlayerMovement()
@@ -91,8 +121,23 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        PlayerPositionX += horizontal * Time.deltaTime * speed;
+        PlayerPositionX += horizontal * Time.deltaTime * (speed + extraSpeed);
     }
 
+
+    public void AddMovementSpeed(float duration, float speed, int staminaReduction)
+    {
+        extraSpeed += speed;
+        staminaReduction += staminaReduction;
+        StartCoroutine(RemoveBonusSpeed(duration, speed, staminaReduction));
+    }
     
+
+    IEnumerator RemoveBonusSpeed(float duration, float speed, float staminaReduction)
+    {
+        yield return new WaitForSeconds(duration);
+
+        extraSpeed -= speed;
+        staminaReduction -= staminaReduction;
+    }
 }

@@ -96,18 +96,31 @@ public class Enemy : MonoBehaviour, IDamagable
 
         if (currentHealth - Damage > 0)
             currentHealth -= Damage;
-        else
-        { 
+        else         
             //aniamtion
+            Die();
+    }
 
-            GameObject powerup = PowerupManager.Instance.GetDrop();
-            if (powerup != null)
+    private void Die()
+    {
+        SpawnManager.Instance.numberOfEnemies--;
+        GameManager.Instance.UpdateEnemiesLeftText();
+        if (SpawnManager.Instance.numberOfEnemies <= 0)
+        {
+            GameManager.Instance.NextWave();
+            if (GameManager.Instance.doneSpawning)
             {
-                Instantiate(powerup, transform.position, Quaternion.identity);
+                GameManager.Instance.doneSpawning = false;
             }
-
-            Destroy(gameObject);
         }
+
+        GameObject powerup = PowerupManager.Instance.GetDrop();
+        if (powerup != null)
+        {  
+            Instantiate(powerup, transform.position, Quaternion.identity);
+        }
+        
+        Destroy(gameObject);
     }
 
 

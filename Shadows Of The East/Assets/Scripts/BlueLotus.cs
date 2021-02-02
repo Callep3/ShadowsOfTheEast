@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RedLotus : MonoBehaviour
+public class BlueLotus : MonoBehaviour
 {
     [SerializeField] private float lifeTime = 15f;
-    [SerializeField] private int bonusDamage = 5;
+    [SerializeField] private float bonusSpeed = 3f;    
     [SerializeField] private float duration = 7.5f;
+    [SerializeField] private int staminaReduction = 10;
     private void Start()
     {
         StartCoroutine(DespawnOverLifeTime());
@@ -21,10 +22,10 @@ public class RedLotus : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        PlayerCombat combat = other.GetComponent<PlayerCombat>();
-        if (combat != null)
+        PlayerMovement movement = other.GetComponent<PlayerMovement>();
+        if (movement != null)
         {
-            combat.AddBonusDamage(duration, bonusDamage);
+            movement.AddMovementSpeed(duration, bonusSpeed, staminaReduction);
             Destroy(gameObject);
         }
     }

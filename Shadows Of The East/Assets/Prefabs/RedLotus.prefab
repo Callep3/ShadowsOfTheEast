@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4477495699500586958}
   - component: {fileID: 5568236919804529197}
   - component: {fileID: 4512193504610652536}
+  - component: {fileID: -4763541717910304345}
   m_Layer: 0
   m_Name: RedLotus
   m_TagString: Untagged
@@ -108,7 +109,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 1.2, y: 1.2}
   m_EdgeRadius: 0
 --- !u!58 &4512193504610652536
 CircleCollider2D:
@@ -126,3 +127,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-4763541717910304345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849594477848199462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9ab41228f705b8428119e42dfa8910a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTime: 0
+  bonusDamage: 0
+  duration: 0

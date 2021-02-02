@@ -6,17 +6,17 @@ public class PowerupManager : MonoBehaviour
 {
     public static PowerupManager Instance;
 
+    [Header("Drop prefabs")]
     [SerializeField] private GameObject redLotusPrefab;
     [SerializeField] private GameObject blueLotusPrefab;
-
+    [Header("Drop settings")]
     [SerializeField] private int minimumBeforeDrop = 3;
     [SerializeField] private int maximumBeforeDrop = 15;
     [SerializeField] private int maximumDifferenceBetweenDrops = 3;
-
-    private int killsWithoutDrop;
-
-    private int blueLotusDrops;
-    private int redLotusDrops;
+    [Header("Debug variable")]
+    [SerializeField] private int killsWithoutDrop;
+    [SerializeField] private int blueLotusDrops;
+    [SerializeField] private int redLotusDrops;
 
     private void Awake()
     {
@@ -57,14 +57,14 @@ public class PowerupManager : MonoBehaviour
     private GameObject GetRandomLotus()
     {
         if (blueLotusDrops - redLotusDrops >= maximumDifferenceBetweenDrops)
-        {
-            blueLotusDrops++;
-            return blueLotusPrefab;
+        {            
+            redLotusDrops++;
+            return redLotusPrefab;
         }
         else if (redLotusDrops - blueLotusDrops >= maximumDifferenceBetweenDrops)
         {
-            redLotusDrops++;
-            return redLotusPrefab;
+            blueLotusDrops++;
+            return blueLotusPrefab;
         }
         else
         {
