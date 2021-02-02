@@ -6,14 +6,21 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private float attackSpeed = 2; //Seconds
+    [SerializeField] private Vector3 boxOffset;
+    [SerializeField] private Vector3 Size;
 
     private GameObject player;
 
+    private float hitCooldown = 0;
     private float attackTime = 0;
     private float attackDistance;
+    private float maxHealth = 3;
+    private float currentHealth = 0;
+    private int facing;
 
     private void Start()
     {
+        currentHealth = maxHealth;
         attackDistance = Random.Range(0, 3) / 10 + 1f;
         speed = Random.Range(5, 10);
         player = GameObject.FindGameObjectWithTag("Player");
@@ -23,9 +30,17 @@ public class Enemy : MonoBehaviour
     {
         Vector2 PlayerPosition = player.transform.position;
         Vector2 EnemyPosition = transform.position;
-
         float distance = Vector2.Distance(PlayerPosition, EnemyPosition);
 
+
+        // which way it's facing
+        if (PlayerPosition.x > EnemyPosition.x)
+            facing = -1;
+        else
+            facing = 1;
+
+
+        // Attack & movement
         if (distance > attackDistance)
             MoveToPlayer();
         else
@@ -35,9 +50,14 @@ public class Enemy : MonoBehaviour
             if (attackTime >= attackSpeed)
             {
                 attackTime = 0;
-                Hit();
+                Attack();
             }
         }
+
+
+        // Hit
+        if (hitCooldown < 1)
+            hitCooldown += Time.deltaTime * 1f;
 
     }
 
@@ -66,9 +86,47 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void Hit()
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        print("Hit");
+        if (hitCooldown >= 1 && collision.gameObject.CompareTag("Sword"))
+        {
+            GetHit(3f);
+        }
+    }
+
+    private void GetHit(float Damage)
+    {
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+
+        if (currentHealth - Damage > 0)
+            currentHealth -= Damage;
+        else
+            //aniamtion
+            Destroy(gameObject);
+    }
+
+
+    private void Attack()
+    {
         //attack player
+        Vector3 facingAttack;
+
+        if (facing == 1)
+            facingAttack = new Vector3(0.53f, 0, 0);
+        else if (facing == -1)
+            facingAttack = new Vector3(-0.54f, 0, 0);
+        else
+            return;
+
+        RaycastHit2D hit2D;
+        hit2D = Physics2D.BoxCast(transform.position + facingAttack, new Vector3(0.64f,1,0), 0, Vector2.zero, 0);
+        if (hit2D.collider != null)
+            if (hit2D.collider.CompareTag("Player"))
+            {
+                //hit2D.collider.GetComponent<PlayerHealth>().ChangeHealth(-0.5f);
+            }
     }
 }
