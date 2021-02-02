@@ -660,6 +660,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1835388098}
     - target: {fileID: 2106112522499035402, guid: a4a1c3b534b065d4e9a4e30802e02421, type: 3}
+      propertyPath: doneSpawning
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106112522499035402, guid: a4a1c3b534b065d4e9a4e30802e02421, type: 3}
       propertyPath: enemiesLeft_Text
       value: 
       objectReference: {fileID: 2072798447}

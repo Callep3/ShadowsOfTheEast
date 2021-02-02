@@ -19,8 +19,11 @@ public class GameManager : MonoBehaviour
     private int numberOfEnemiesToSpawn;
     public int baseEnemiesPerWave = 10;
     public int enemyNumberIncreasePerWaveConstant;
+    public int baseTimePerWave = 30;
+    public int timePerWave = 10;
 
     public bool bought = true;
+    public bool doneSpawning = true;
 
     #region StartFunctions
     private void Awake()
@@ -36,6 +39,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         NextWave();
+        doneSpawning = false;
     }
 
     private void GetComponents()
@@ -73,19 +77,26 @@ public class GameManager : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.K))
         {
-            GameManager.Instance.UpgradePanel.SetActive(true);
+            UpgradePanel.SetActive(true);
         }
     }
     #endregion
 
     #region WaveFunctionality
-    private void NextWave()
+    public void NextWave()
     {
+        if (doneSpawning == false)
+        {
+            return;
+        }
+        
         wave++;
 
         CalculateNumberOfEnemiesToSpawn();
         
         StartCoroutine(EnemySpawner());
+
+        StartCoroutine(ForceNextWave(wave));
         
         UpdateWaveText();
     }
@@ -97,6 +108,11 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator EnemySpawner()
     {
+        yield return new WaitForSeconds(timeInBetweenWaves);
+        if (!bought)
+            UpgradePanel.SetActive(true);
+        
+
         yield return new WaitUntil(() => bought);
         bought = false;
         
@@ -106,6 +122,22 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(enemySpawnCooldown);
             SpawnManager.Instance.SpawnEnemy();
         }
+
+        doneSpawning = true;
+    }
+
+    public IEnumerator ForceNextWave(int currentWave)
+    {
+        yield return new WaitForSeconds(baseTimePerWave + timePerWave * wave);
+        if (wave != currentWave)
+        {
+            Debug.Log("not current wave");
+            doneSpawning = false;
+        }
+        else
+            doneSpawning = true;
+        
+        NextWave();
     }
     #endregion
 
