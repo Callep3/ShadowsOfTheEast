@@ -76,7 +76,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
             }
         }
 
-        attackCooldownTimer = heavyAttackDamage;
+        attackCooldownTimer = heavyAttackCooldown;
     }
 
     public void TakeDamage(int damageAmount)
