@@ -1,18 +1,51 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject spawnPositionLeft;
+    public GameObject spawnPositionRight;
+    public GameObject enemyPrefab;
+    private bool LeftOrRightSpawnPoint;
+
+    #region Testing
+    private void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SpawnEnemy();
+        }
+    }
+    #endregion
+
+    #region SpawnCode
+    public void SpawnEnemy()
+    {
+        ChooseSpawnPoint();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void ChooseSpawnPoint()
     {
-        
+        if ((int)Random.Range(0, 2) == (int)Spawn_Point.Left)
+        {
+            InstantiateEnemy(spawnPositionLeft);
+        }
+        else
+        {
+            InstantiateEnemy(spawnPositionRight);
+        }
     }
+
+    private void InstantiateEnemy(GameObject spawnPoint)
+    {
+        Instantiate(enemyPrefab, spawnPoint.transform);
+    }
+    #endregion
+}
+
+public enum Spawn_Point : int
+{
+    Left,
+    Right
 }
