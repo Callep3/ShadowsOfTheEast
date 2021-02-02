@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 16923148}
   - component: {fileID: 16923147}
   - component: {fileID: 16923146}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -699,6 +699,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1231976906, guid: ba15e08139986f14b8a4b6879e8b6578, type: 3}
+      propertyPath: dashSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4073576981772182852, guid: ba15e08139986f14b8a4b6879e8b6578, type: 3}
       propertyPath: m_Name
       value: Player

@@ -100,7 +100,10 @@ MonoBehaviour:
   speed: 12
   dashDistance: 5
   dashCooldown: 4
-  dashCooldownTimer: 0
+  jumpForce: 10
+  groundLayers:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!50 &5314770036059409765
 Rigidbody2D:
   serializedVersion: 4
