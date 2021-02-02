@@ -9,6 +9,7 @@
         <e p="Scripts" t="Include">
           <e p="Enemy.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
+          <e p="MainMenu.cs" t="Include" />
           <e p="PlayerMovement.cs" t="Include" />
           <e p="SpawnManager.cs" t="Include" />
           <e p="UpgradePanelScript.cs" t="Include" />
