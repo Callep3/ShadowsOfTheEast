@@ -819,6 +819,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7422238859092066427, guid: 01620c0b9d3cef240ad8e2931b2a5b09, type: 3}
+      propertyPath: enemyPrefab
+      value: 
+      objectReference: {fileID: 2131482842444219271, guid: db32085017e78834fb8ea67bb9c50573, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01620c0b9d3cef240ad8e2931b2a5b09, type: 3}
 --- !u!1001 &8741455389725269509
