@@ -140,9 +140,17 @@ MonoBehaviour:
   heavyAttackDamage: 10
   heavyAttackCooldown: 0.8
   health: 0
-  shuriken: {fileID: 0}
+  defence: 0
+  shuriken: {fileID: 2522925430764436367, guid: 09ecc44783c6ce644aeb07f7b5cd6676, type: 3}
   throwDamage: 3
   throwCooldown: 0.25
+  throwSpeed: 12
+  fireball: {fileID: 7068274170254247905, guid: 264c6d40a5b7e6543ac9fa5080fcda98, type: 3}
+  fireDamage: 80
+  fireCooldown: 5
+  fireCooldownTimer: 0
+  fireSpeed: 10
+  facing: 1
 --- !u!114 &1231976906
 MonoBehaviour:
   m_ObjectHideFlags: 0
