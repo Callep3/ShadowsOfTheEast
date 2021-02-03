@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,6 +12,8 @@ public class Enemy : MonoBehaviour, IDamagable
     [SerializeField] private Vector3 boxOffset;
     [SerializeField] private Vector3 Size;
     [SerializeField] private float powerUpDropYOffset = 2f;
+    [SerializeField] private AnimatorController zombieAnimation1;
+    [SerializeField] private AnimatorController zombieAnimation2;
     private Rigidbody2D rb;
     private float torque;
 
@@ -34,6 +37,11 @@ public class Enemy : MonoBehaviour, IDamagable
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         torque = Random.Range(-180, 180);
+        
+        if ((int) Random.Range(0, 2) == 1)
+            GetComponent<Animator>().runtimeAnimatorController = zombieAnimation1;
+        else
+            GetComponent<Animator>().runtimeAnimatorController = zombieAnimation2;
     }
 
     private void Update()

@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class UpgradePanelScript : MonoBehaviour
 {
+    [SerializeField] private HUD hud;
     private PlayerCombat playerCombat;
 
     public int lightAttackIncrease = 5;
@@ -45,6 +46,7 @@ public class UpgradePanelScript : MonoBehaviour
     {
         playerCombat.maxHealth += healthIncrease;
         playerCombat.health += healthIncrease;
+        hud.UpdateHealth();
         
         UpgradeButtons();
     }
