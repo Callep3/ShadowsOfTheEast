@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour, IDamagable
     [SerializeField] private float attackSpeed = 2; //Seconds
     [SerializeField] private Vector3 boxOffset;
     [SerializeField] private Vector3 Size;
+    [SerializeField] private float powerUpDropYOffset = 2f;
 
     private GameObject player;
 
@@ -96,9 +97,31 @@ public class Enemy : MonoBehaviour, IDamagable
 
         if (currentHealth - Damage > 0)
             currentHealth -= Damage;
-        else
+        else         
             //aniamtion
-            Destroy(gameObject);
+            Die();
+    }
+
+    private void Die()
+    {
+        SpawnManager.Instance.numberOfEnemies--;
+        GameManager.Instance.UpdateEnemiesLeftText();
+        if (SpawnManager.Instance.numberOfEnemies <= 0)
+        {
+            GameManager.Instance.NextWave();
+            if (GameManager.Instance.doneSpawning)
+            {
+                GameManager.Instance.doneSpawning = false;
+            }
+        }
+
+        GameObject powerup = PowerupManager.Instance.GetDrop();
+        if (powerup != null)
+        {  
+            Instantiate(powerup, transform.position + (Vector3.up * powerUpDropYOffset), Quaternion.identity);
+        }
+        
+        Destroy(gameObject);
     }
 
 

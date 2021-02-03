@@ -6,27 +6,42 @@ using UnityEngine;
 
 public class UpgradePanelScript : MonoBehaviour
 {
+    private PlayerCombat playerCombat;
+
+    public int lightAttackIncrease = 5;
+    public int heavyAttackIncrease = 10;
+
+    public int healthIncrease = 20;
     #region ButtonFunctionality
+
+    private void Start()
+    {
+        GetComponents();
+    }
+
+    private void GetComponents()
+    {
+        playerCombat = GameObject.Find("Player").GetComponent<PlayerCombat>();
+    }
+
     public void AttackUpButton()
     {
-        //Add code for increase of player attack
-        Debug.Log("AttackUpButton pressed");
+        playerCombat.lightAttackDamage += lightAttackIncrease;
+        playerCombat.heavyAttackDamage += heavyAttackIncrease;
 
         UpgradeButtons();
     }
     
     public void DefenceUpButton()
     {
-        //Add code for increase of player defence
-        Debug.Log("DefenceUpButton pressed");
+        playerCombat.defence += 5;
         
         UpgradeButtons();
     }
     
     public void HealthUpButton()
     {
-        //Add code for increase of player health
-        Debug.Log("HealthUpButton pressed");
+        playerCombat.health += healthIncrease;
         
         UpgradeButtons();
     }
