@@ -59,7 +59,7 @@ public class ScoreManager : MonoBehaviour
     private IEnumerator ResetCamera()
     {
         yield return new WaitForSeconds(0);
-        camera.DOShakePosition(1, 1);
+        camera.DOShakePosition(0.7f, 0.2f);
         yield return new WaitForSeconds(1);
         camera.transform.DOMove(new Vector3(0, 0, -10), 1);
     }
