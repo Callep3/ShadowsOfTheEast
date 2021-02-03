@@ -9,13 +9,15 @@ public class PlayerCombat : MonoBehaviour, IDamagable
     [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask enemyLayers;
     [Header("Light attack settings")]
-    [SerializeField] private int lightAttackDamage = 12;
+    [SerializeField] public int lightAttackDamage = 12;
     [SerializeField] private float lightAttackCooldown = 0.5f;
     [Header("Heavy attack settings")]
-    [SerializeField] private int heavyAttackDamage = 25;
+    [SerializeField] public int heavyAttackDamage = 25;
     [SerializeField] private float heavyAttackCooldown = 0.8f;
     [Header("Health Settings")]
-    [SerializeField] private int health;
+    [SerializeField] public int health = 20;
+    [Header("Defence Settings")]
+    [SerializeField] public int defence = 0;
     [Header("Throwables Settings")]
     [SerializeField] private GameObject shuriken;
     [SerializeField] private int throwDamage = 3;
@@ -30,6 +32,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
     private float attackCooldownTimer;
     private List<GameObject> shurikens = new List<GameObject>();
     private List<GameObject> firballs = new List<GameObject>();
+    private int bonusDamage = 0;
 
     private void Update()
     {
@@ -79,9 +82,9 @@ public class PlayerCombat : MonoBehaviour, IDamagable
                     IDamagable damagable = collider.GetComponent<IDamagable>();
                     if (damagable != null)
                     {
-                        damagable.TakeDamage(throwDamage);
-                        Destroy(firballs[i]);
-                        firballs.Remove(firballs[i]);
+                        damagable.TakeDamage(throwDamage + bonusDamage);
+                        Destroy(Shurikens[i]);
+                        Shurikens.Remove(Shurikens[i]);
                     }
                 }
             }
@@ -139,7 +142,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
             IDamagable damagable = collider.GetComponent<IDamagable>();
             if (damagable != null)
             {
-                damagable.TakeDamage(lightAttackDamage);
+                damagable.TakeDamage(lightAttackDamage + bonusDamage);
             }
         }
 
@@ -155,7 +158,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
             IDamagable damagable = collider.GetComponent<IDamagable>();
             if (damagable != null)
             {
-                damagable.TakeDamage(heavyAttackDamage);
+                damagable.TakeDamage(heavyAttackDamage + bonusDamage);
             }
         }
 
@@ -182,7 +185,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
     {
         if (!isDead)
         {
-            health -= damageAmount;
+            health -= damageAmount - defence;
             if (health <= 0)
             {
                 //play death anim
@@ -190,5 +193,18 @@ public class PlayerCombat : MonoBehaviour, IDamagable
                 isDead = true;
             }
         }
+    }
+
+    public void AddBonusDamage(float duration, int damage)
+    {
+        bonusDamage += damage;
+        StartCoroutine(RemoveBonusDamage(duration, damage));
+    }
+
+    IEnumerator RemoveBonusDamage(float duration, int damage)
+    {
+        yield return new WaitForSeconds(duration);
+
+        bonusDamage -= damage;
     }
 }
