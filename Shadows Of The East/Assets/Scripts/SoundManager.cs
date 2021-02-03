@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    [SerializeField] private AudioSource backgroundMusic;
     [SerializeField] private int maxAmountOfMoans = 5;
     [SerializeField] List<AudioSource> moanSources = new List<AudioSource>();
     public static SoundManager Instance;
@@ -16,6 +17,16 @@ public class SoundManager : MonoBehaviour
     }
 
 
+
+    public void StartBackgroundMusic()
+    {
+        backgroundMusic.Play();
+    }
+
+    public void StopBackgroundMusic()
+    {
+        backgroundMusic.Stop();
+    }
     public bool AllowedToPlayMoan(AudioSource moan)
     {
         UpdateMoans();
