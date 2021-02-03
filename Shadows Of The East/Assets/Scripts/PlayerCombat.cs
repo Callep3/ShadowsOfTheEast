@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour, IDamagable
 {
     [Header("General settings")]
+    [SerializeField] private PlayerMovement movementScript;
     [SerializeField] private float attackRange = 0.5f;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask enemyLayers;
@@ -38,37 +39,15 @@ public class PlayerCombat : MonoBehaviour, IDamagable
     private List<GameObject> shurikens = new List<GameObject>();
     private List<GameObject> firballs = new List<GameObject>();
     private int bonusDamage = 0;
-    private float facing = 1;
-    private float inAir = 0;
 
     private void Update()
     {
         UpdateMeleeCombat();
         UpdateShurikens();
         UpdateFireballs();
-        UpdatePlayerInfo();
     }
 
-    private void UpdatePlayerInfo()
-    {
-        if (transform.rotation.y != 0)
-        {
-            facing = -1;
-        }
-        else
-        {
-            facing = 1;
-        }
 
-        if (transform.position.y > -1)
-        {
-            inAir = -1;
-        }
-        else
-        {
-            inAir = 0;
-        }
-    }
 
     private void UpdateShurikens()
     {
@@ -113,17 +92,22 @@ public class PlayerCombat : MonoBehaviour, IDamagable
                 {
 
                     Collider2D[] hitColliders = Physics2D.OverlapCircleAll(firballs[i].transform.position, 0.5f, enemyLayers);
-
+                    bool enemyHit = false;
                     foreach (Collider2D collider in hitColliders)
                     {
                         IDamagable damagable = collider.GetComponent<IDamagable>();
                         if (damagable != null)
                         {
-                            damagable.TakeDamage(fireDamage + bonusDamage);                            
+                            damagable.TakeDamage(fireDamage + bonusDamage);
+                            enemyHit = true;
                         }
                     }
-                    Destroy(firballs[i]);
-                    firballs.Remove(firballs[i]);
+
+                    if (enemyHit == true)
+                    {
+                        firballs.Remove(firballs[i]);
+                        Destroy(firballs[i]);
+                    }
                 }
                 else
                 {
@@ -210,9 +194,16 @@ public class PlayerCombat : MonoBehaviour, IDamagable
             shurikenAmount -= 1;
 
             GameObject shurikenObject = Instantiate(shuriken, attackPoint.position, transform.rotation);
-            shurikenObject.GetComponent<Rigidbody2D>().velocity = new Vector3(facing * throwSpeed, inAir * throwSpeed, 90);
-            shurikens.Add(shurikenObject);
 
+            if (movementScript.IsGrounded())
+            {
+                shurikenObject.GetComponent<Rigidbody2D>().velocity = new Vector3(movementScript.lastDirection * throwSpeed, 0 * throwSpeed, 90);
+            }
+            else
+            {
+                shurikenObject.GetComponent<Rigidbody2D>().velocity = new Vector3(movementScript.lastDirection * throwSpeed, -1 * throwSpeed, 90);
+            }
+            shurikens.Add(shurikenObject);
             attackCooldownTimer = throwCooldown;
         }
     }
@@ -221,19 +212,22 @@ public class PlayerCombat : MonoBehaviour, IDamagable
     {
 
         GameObject fireballObject = Instantiate(fireball, attackPoint.position, transform.rotation);
-        fireballObject.GetComponent<Rigidbody2D>().velocity = new Vector3(facing * fireSpeed, inAir * fireSpeed, 0);
 
-        if (inAir != 0)
+        if (!movementScript.IsGrounded())
         {
+            fireballObject.GetComponent<Rigidbody2D>().velocity = new Vector3(movementScript.lastDirection * fireSpeed, -1 * fireSpeed, 0);
             // Angle it down when in-air
             Quaternion forwardRotation = Quaternion.Euler(0, 0, -45);
-            if (facing == -1)
+            if (movementScript.lastDirection == -1)
             {
                 forwardRotation = Quaternion.Euler(0, -180, -45);
             }
             fireballObject.transform.rotation = forwardRotation;
         }
-        
+        else
+        {
+            fireballObject.GetComponent<Rigidbody2D>().velocity = new Vector3(movementScript.lastDirection * fireSpeed, 0 * fireSpeed, 0);
+        }
 
         firballs.Add(fireballObject);
         fireCooldownTimer = fireCooldown;

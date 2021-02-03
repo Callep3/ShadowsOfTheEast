@@ -5,17 +5,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //Inputs
-    //Player Move
-    //Player Dash
-
     private float PlayerPositionX;
     private Rigidbody2D rigidBody;
 
     [Header("Stamina Settings")]
     [SerializeField] private int maxStamina = 100;
     [SerializeField] private int staminaPerSecond = 5;
-    private int stamina;
+    public int stamina;
     [Header("Movement settings")]
     [SerializeField] private float speed = 20f;
     [Header("Dash settings")]
@@ -23,16 +19,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashCooldown = 4f;
     [SerializeField] private int dashStaminaCost = 25;    
     private float dashCooldownTimer = 0;
-    private float lastDirection = 1;
+    public float lastDirection { private set; get; } = 1;
     [Header("Jump settings")]
     [SerializeField] private float jumpForce = 2f;
     [SerializeField] private LayerMask groundLayers;
     [SerializeField] private Transform jumpCheckPoint;
     private float jumpBuffer = 0;
     private float extraSpeed = 0;
-    private int staminaReduction = 0;
+    public int staminaReduction { private set; get; } = 0;
     private float staminaRechargeTimer;
     
+    public bool IsGrounded()
+    {
+        return Physics2D.Raycast(jumpCheckPoint.transform.position, Vector3.down, 0.2f, groundLayers);
+    }
 
     private void Awake()
     {
@@ -84,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (jumpBuffer > 0)
         {
-            if (Physics2D.Raycast(jumpCheckPoint.transform.position, Vector3.down, 0.2f, groundLayers))
+            if (IsGrounded())
             {
                 jumpBuffer = 0;
                 rigidBody.velocity = Vector2.up * jumpForce;

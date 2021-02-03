@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beff6996ddb70e140ba99e47c6c50c39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementScript: {fileID: 1231976906}
   attackRange: 0.5
   attackPoint: {fileID: 5580136052782428722}
   enemyLayers:
