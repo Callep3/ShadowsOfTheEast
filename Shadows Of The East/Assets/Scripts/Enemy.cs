@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -136,8 +137,16 @@ public class Enemy : MonoBehaviour, IDamagable
             Instantiate(powerup, transform.position + (Vector3.up * powerUpDropYOffset), Quaternion.identity);
         }
 
-        ScoreManager.Instance.IncreaseCombo();
-        ScoreManager.Instance.IncreaseScore();
+        if (dead == false)
+        {
+            ScoreManager.Instance.IncreaseCombo();
+            ScoreManager.Instance.IncreaseScore();
+            SpawnManager.Instance.numberOfEnemies--;
+            GameManager.Instance.UpdateEnemiesLeftText();
+            GetComponent<SpriteRenderer>().DOColor(new Color(0, 0, 0), 0.65f);
+            GetComponent<SpriteRenderer>().DOFade(0, 0.7f);
+        }
+        
         ScoreManager.Instance.ShakeCamera();
 
         DeathAnimation();
@@ -169,12 +178,9 @@ public class Enemy : MonoBehaviour, IDamagable
     
     private IEnumerator UntilDestroyed()
     {
-        yield return new WaitForSeconds(1);
-        if (dead)
-        {
-            SpawnManager.Instance.numberOfEnemies--;
-            GameManager.Instance.UpdateEnemiesLeftText();
-        }
+        yield return new WaitForSeconds(0.2f);
+        Destroy(GetComponent<BoxCollider2D>());
+        yield return new WaitForSeconds(0.8f);
         Destroy(gameObject);
     }
 
