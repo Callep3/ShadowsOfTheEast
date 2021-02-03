@@ -195,9 +195,9 @@ public class Enemy : MonoBehaviour, IDamagable
         Vector3 facingAttack;
 
         if (facing == 1)
-            facingAttack = new Vector3(0.53f, 0, 0);
-        else if (facing == -1)
             facingAttack = new Vector3(-0.54f, 0, 0);
+        else if (facing == -1)
+            facingAttack = new Vector3(0.53f, 0, 0);
         else
             return;
 
