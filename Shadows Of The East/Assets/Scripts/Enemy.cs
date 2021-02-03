@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour, IDamagable
         speed = Random.Range(5, 10);
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
-        torque = Random.Range(5, 15);
+        torque = Random.Range(-180, 180);
     }
 
     private void Update()
@@ -122,15 +122,6 @@ public class Enemy : MonoBehaviour, IDamagable
 
     private void Die()
     {
-        if (SpawnManager.Instance.numberOfEnemies <= 0)
-        {
-            GameManager.Instance.NextWave();
-            if (GameManager.Instance.doneSpawning)
-            {
-                GameManager.Instance.doneSpawning = false;
-            }
-        }
-
         GameObject powerup = PowerupManager.Instance.GetDrop();
         if (powerup != null)
         {  
@@ -147,6 +138,15 @@ public class Enemy : MonoBehaviour, IDamagable
             GetComponent<SpriteRenderer>().DOFade(0, 0.7f);
         }
         
+        if (SpawnManager.Instance.numberOfEnemies <= 0)
+        {
+            GameManager.Instance.NextWave();
+            if (GameManager.Instance.doneSpawning)
+            {
+                GameManager.Instance.doneSpawning = false;
+            }
+        }
+        
         ScoreManager.Instance.ShakeCamera();
 
         DeathAnimation();
@@ -161,6 +161,7 @@ public class Enemy : MonoBehaviour, IDamagable
         Vector2 EnemyPosition = transform.position;
 
         rb.constraints = RigidbodyConstraints2D.None;
+        Destroy(GetComponent<BoxCollider2D>());
 
         if (PlayerPosition.x > EnemyPosition.x)
         {
@@ -178,9 +179,8 @@ public class Enemy : MonoBehaviour, IDamagable
     
     private IEnumerator UntilDestroyed()
     {
-        yield return new WaitForSeconds(0.2f);
-        Destroy(GetComponent<BoxCollider2D>());
-        yield return new WaitForSeconds(0.8f);
+        //yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
 

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,7 +16,8 @@ public class GameManager : MonoBehaviour
     public TMP_Text wave_Text;
     public GameObject UpgradePanel;
 
-    public float enemySpawnCooldown;
+    public float enemyMinSpawnCooldown;
+    public float enemyMaxSpawnCooldown;
     public float timeInBetweenWaves;
 
     private int numberOfEnemiesToSpawn;
@@ -103,7 +105,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(timeInBetweenWaves);
         for (int i = 0; i < numberOfEnemiesToSpawn; i++)
         {
-            yield return new WaitForSeconds(enemySpawnCooldown);
+            yield return new WaitForSeconds(Random.Range(enemyMinSpawnCooldown, enemyMaxSpawnCooldown));
             SpawnManager.Instance.SpawnEnemy();
         }
 
