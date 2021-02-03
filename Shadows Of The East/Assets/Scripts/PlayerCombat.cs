@@ -22,76 +22,98 @@ public class PlayerCombat : MonoBehaviour, IDamagable
     [SerializeField] private GameObject shuriken;
     [SerializeField] private int throwDamage = 3;
     [SerializeField] private float throwCooldown = 0.25f;
+    [SerializeField] private float throwSpeed = 12;
     [Header("Fireballs")]
     [SerializeField] private GameObject fireball;
     [SerializeField] private int fireDamage = 80;
     [SerializeField] private float fireCooldown = 5;
     [SerializeField] private float fireCooldownTimer = 0;
+    [SerializeField] private float fireSpeed = 10;
  
     private bool isDead = false;
     private float attackCooldownTimer;
     private List<GameObject> shurikens = new List<GameObject>();
     private List<GameObject> firballs = new List<GameObject>();
     private int bonusDamage = 0;
+    [SerializeField] private float facing = 1;
 
     private void Update()
     {
         UpdateMeleeCombat();
         UpdateShurikens();
         UpdateFireballs();
+        UpdateFacing();
+    }
+
+    private void UpdateFacing()
+    {
+        if (transform.rotation.y != 0)
+        {
+            facing = -1;
+        }
+        else
+        {
+            facing = 1;
+        }
     }
 
     private void UpdateShurikens()
     {
-        for (int i = 0; i < shurikens.Count; i++)
+        if (shurikens.Count > 0)
         {
-            if (shurikens[i].transform.position.x < 35 || shurikens[i].transform.position.x > -35)
+            for (int i = 0; i < shurikens.Count; i++)
             {
-                Collider2D[] hitColliders = Physics2D.OverlapCircleAll(shurikens[i].transform.position, 0.5f, enemyLayers);
-
-                foreach (Collider2D collider in hitColliders)
+                if (shurikens[i].transform.position.x < 35 || shurikens[i].transform.position.x > -35)
                 {
-                    IDamagable damagable = collider.GetComponent<IDamagable>();
-                    if (damagable != null)
+                    Collider2D[] hitColliders = Physics2D.OverlapCircleAll(shurikens[i].transform.position, 0.5f, enemyLayers);
+
+                    foreach (Collider2D collider in hitColliders)
                     {
-                        damagable.TakeDamage(throwDamage);
-                        Destroy(shurikens[i]);
-                        shurikens.Remove(shurikens[i]);
+                        IDamagable damagable = collider.GetComponent<IDamagable>();
+                        if (damagable != null)
+                        {
+                            damagable.TakeDamage(throwDamage);
+                            Destroy(shurikens[i]);
+                            shurikens.Remove(shurikens[i]);
+                        }
                     }
                 }
-            }
-            else
-            {
-                Destroy(shurikens[i]);
-                shurikens.Remove(shurikens[i]);
+                else
+                {
+                    Destroy(shurikens[i]);
+                    shurikens.Remove(shurikens[i]);
+                }
             }
         }
     }
 
     private void UpdateFireballs()
     {
-        for (int i = 0; i < firballs.Count; i++)
+        if (firballs.Count > 0)
         {
-            if (shurikens[i].transform.position.x < 35 || shurikens[i].transform.position.x > -35)
+            for (int i = 0; i < firballs.Count; i++)
             {
-
-                Collider2D[] hitColliders = Physics2D.OverlapCircleAll(firballs[i].transform.position, 0.5f, enemyLayers);
-
-                foreach (Collider2D collider in hitColliders)
+                if (firballs[i].transform.position.x < 35 || firballs[i].transform.position.x > -35)
                 {
-                    IDamagable damagable = collider.GetComponent<IDamagable>();
-                    if (damagable != null)
+
+                    Collider2D[] hitColliders = Physics2D.OverlapCircleAll(firballs[i].transform.position, 0.5f, enemyLayers);
+
+                    foreach (Collider2D collider in hitColliders)
                     {
-                        damagable.TakeDamage(throwDamage + bonusDamage);
-                        Destroy(Shurikens[i]);
-                        Shurikens.Remove(Shurikens[i]);
+                        IDamagable damagable = collider.GetComponent<IDamagable>();
+                        if (damagable != null)
+                        {
+                            damagable.TakeDamage(throwDamage + bonusDamage);
+                            Destroy(firballs[i]);
+                            firballs.Remove(firballs[i]);
+                        }
                     }
                 }
-            }
-            else
-            {
-                Destroy(firballs[i]);
-                firballs.Remove(firballs[i]);
+                else
+                {
+                    Destroy(firballs[i]);
+                    firballs.Remove(firballs[i]);
+                }
             }
         }
     }
@@ -168,7 +190,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
     private void Shuriken()
     {
         GameObject shurikenObject = Instantiate(shuriken, attackPoint.position, transform.rotation);
-        shurikenObject.GetComponent<Rigidbody2D>().velocity = new Vector3(3, 0, 0);
+        shurikenObject.GetComponent<Rigidbody2D>().velocity = new Vector3(facing * throwSpeed, 0, 0);
         shurikens.Add(shurikenObject);
         attackCooldownTimer = throwCooldown;
     }
@@ -176,7 +198,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
     private void FireBall() 
     {
         GameObject fireballObject = Instantiate(fireball, attackPoint.position, transform.rotation);
-        fireballObject.GetComponent<Rigidbody2D>().velocity = new Vector3(3, 0, 0);
+        fireballObject.GetComponent<Rigidbody2D>().velocity = new Vector3(facing * fireSpeed, 0, 0);
         firballs.Add(fireballObject);
         fireCooldownTimer = fireCooldown;
     }
