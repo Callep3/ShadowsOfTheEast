@@ -219,11 +219,26 @@ public class PlayerCombat : MonoBehaviour, IDamagable
 
     private void FireBall()
     {
+
         GameObject fireballObject = Instantiate(fireball, attackPoint.position, transform.rotation);
         fireballObject.GetComponent<Rigidbody2D>().velocity = new Vector3(facing * fireSpeed, inAir * fireSpeed, 0);
-        firballs.Add(fireballObject);
 
+        if (inAir != 0)
+        {
+            // Angle it down when in-air
+            Quaternion forwardRotation = Quaternion.Euler(0, 0, 45);
+            if (facing == -1)
+            {
+                Debug.Log("left facing airial");
+                forwardRotation = Quaternion.Euler(0, -180, -45);
+            }
+            fireballObject.transform.rotation = forwardRotation;
+        }
+        
+
+        firballs.Add(fireballObject);
         fireCooldownTimer = fireCooldown;
+        Debug.Break();
     }
 
     public void TakeDamage(int damageAmount)
