@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4512193504610652536}
   - component: {fileID: -4763541717910304345}
   - component: {fileID: 6025765057037925218}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RedLotus
   m_TagString: Untagged
   m_Icon: {fileID: 0}

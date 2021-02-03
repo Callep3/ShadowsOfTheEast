@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour, IDamagable
     [SerializeField] private float attackSpeed = 2; //Seconds
     [SerializeField] private Vector3 boxOffset;
     [SerializeField] private Vector3 Size;
+    [SerializeField] private float powerUpDropYOffset = 2f;
 
     private GameObject player;
 
@@ -117,7 +118,7 @@ public class Enemy : MonoBehaviour, IDamagable
         GameObject powerup = PowerupManager.Instance.GetDrop();
         if (powerup != null)
         {  
-            Instantiate(powerup, transform.position + Vector3.up, Quaternion.identity);
+            Instantiate(powerup, transform.position + (Vector3.up * powerUpDropYOffset), Quaternion.identity);
         }
         
         Destroy(gameObject);
