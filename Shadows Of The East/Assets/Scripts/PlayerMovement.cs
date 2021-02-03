@@ -51,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
         UpdateJump();
 
         UpdateTimers();
-        transform.position = new Vector2(PlayerPositionX, transform.position.y);
+        transform.position = new Vector2(Mathf.Clamp(PlayerPositionX, (float)-8.5, (float)8.5), transform.position.y);
     }   
 
     private void UpdateTimers()
