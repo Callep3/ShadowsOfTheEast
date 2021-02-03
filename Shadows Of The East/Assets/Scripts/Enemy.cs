@@ -131,10 +131,10 @@ public class Enemy : MonoBehaviour, IDamagable
 
         ScoreManager.Instance.IncreaseCombo();
         ScoreManager.Instance.IncreaseScore();
-        
+        ScoreManager.Instance.ShakeCamera();
+
         Destroy(gameObject);
     }
-
 
     private void Attack()
     {
