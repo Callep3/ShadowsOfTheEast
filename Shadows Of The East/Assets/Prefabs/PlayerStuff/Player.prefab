@@ -168,11 +168,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxStamina: 100
   staminaPerSecond: 5
-  speed: 12
+  speed: 5
   dashDistance: 5
   dashCooldown: 4
   dashStaminaCost: 25
-  jumpForce: 5
+  jumpForce: 6
   groundLayers:
     serializedVersion: 2
     m_Bits: 8
