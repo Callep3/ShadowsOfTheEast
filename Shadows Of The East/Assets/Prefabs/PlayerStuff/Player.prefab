@@ -172,7 +172,7 @@ MonoBehaviour:
   dashDistance: 5
   dashCooldown: 4
   dashStaminaCost: 25
-  jumpForce: 10
+  jumpForce: 5
   groundLayers:
     serializedVersion: 2
     m_Bits: 8
