@@ -21,7 +21,6 @@ public class RedLotus : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other.gameObject.name);
         PlayerCombat combat = other.GetComponent<PlayerCombat>();
         if (combat != null)
         {
