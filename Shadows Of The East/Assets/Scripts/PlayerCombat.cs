@@ -226,7 +226,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
         if (inAir != 0)
         {
             // Angle it down when in-air
-            Quaternion forwardRotation = Quaternion.Euler(0, 0, 45);
+            Quaternion forwardRotation = Quaternion.Euler(0, 0, -45);
             if (facing == -1)
             {
                 forwardRotation = Quaternion.Euler(0, -180, -45);
