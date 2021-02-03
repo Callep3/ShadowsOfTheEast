@@ -21,16 +21,6 @@ public class SpawnManager : MonoBehaviour
             Destroy(gameObject);
     }
     #endregion
-    
-    #region Testing
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            numberOfEnemies--;
-        }
-    }
-    #endregion
 
     #region SpawnCode
     public void SpawnEnemy()

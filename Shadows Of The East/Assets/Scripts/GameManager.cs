@@ -64,26 +64,6 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    #region Testing
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            NextWave();
-        }
-
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            Debug.Log(SpawnManager.Instance.numberOfEnemies);
-        }
-        
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            UpgradePanel.SetActive(true);
-        }
-    }
-    #endregion
-
     #region WaveFunctionality
     public void NextWave()
     {

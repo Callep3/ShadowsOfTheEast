@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour, IDamagable
     [SerializeField] private Vector3 boxOffset;
     [SerializeField] private Vector3 Size;
     [SerializeField] private float powerUpDropYOffset = 2f;
+    private Rigidbody2D rb;
+    private float torque;
 
     private GameObject player;
 
@@ -21,6 +23,8 @@ public class Enemy : MonoBehaviour, IDamagable
     private float currentHealth = 0;
     private int facing;
 
+    private bool dead;
+
     private void Start()
     {
         EnemyScaling();
@@ -28,6 +32,8 @@ public class Enemy : MonoBehaviour, IDamagable
         attackDistance = Random.Range(0, 3) / 10 + 1f;
         speed = Random.Range(5, 10);
         player = GameObject.FindGameObjectWithTag("Player");
+        rb = GetComponent<Rigidbody2D>();
+        torque = Random.Range(5, 15);
     }
 
     private void Update()
@@ -79,6 +85,9 @@ public class Enemy : MonoBehaviour, IDamagable
         float distance = Vector2.Distance(PlayerPosition, EnemyPosition);
         float direction;
 
+        if (dead)
+            return;
+
         if (player.transform.position.x - attackDistance > transform.position.x)
             direction = 1;
         else if (player.transform.position.x + attackDistance < transform.position.x)
@@ -112,8 +121,6 @@ public class Enemy : MonoBehaviour, IDamagable
 
     private void Die()
     {
-        SpawnManager.Instance.numberOfEnemies--;
-        GameManager.Instance.UpdateEnemiesLeftText();
         if (SpawnManager.Instance.numberOfEnemies <= 0)
         {
             GameManager.Instance.NextWave();
@@ -131,10 +138,45 @@ public class Enemy : MonoBehaviour, IDamagable
 
         ScoreManager.Instance.IncreaseCombo();
         ScoreManager.Instance.IncreaseScore();
-        
-        Destroy(gameObject);
+        ScoreManager.Instance.ShakeCamera();
+
+        DeathAnimation();
+            
+        StartCoroutine(UntilDestroyed());
     }
 
+    private void DeathAnimation()
+    {
+        dead = true;
+        Vector2 PlayerPosition = player.transform.position;
+        Vector2 EnemyPosition = transform.position;
+
+        rb.constraints = RigidbodyConstraints2D.None;
+
+        if (PlayerPosition.x > EnemyPosition.x)
+        {
+            //negative force
+            rb.AddForce(new Vector2(Random.Range(-10, 0), Random.Range(3, 10)), ForceMode2D.Impulse);
+            rb.AddTorque(torque, ForceMode2D.Force);
+        }
+        else
+        {
+            //positive force
+            rb.AddForce(new Vector2(Random.Range(0, 10), Random.Range(3, 10)), ForceMode2D.Impulse);
+            rb.AddTorque(torque, ForceMode2D.Force);
+        }
+    }
+    
+    private IEnumerator UntilDestroyed()
+    {
+        yield return new WaitForSeconds(1);
+        if (dead)
+        {
+            SpawnManager.Instance.numberOfEnemies--;
+            GameManager.Instance.UpdateEnemiesLeftText();
+        }
+        Destroy(gameObject);
+    }
 
     private void Attack()
     {
