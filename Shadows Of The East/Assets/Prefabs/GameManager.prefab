@@ -43,11 +43,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fff54b7b87bbdf14eaacf36e7cf44d28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wave_Text: {fileID: 0}
+  wave: 0
   enemiesLeft_Text: {fileID: 0}
+  combo_Text: {fileID: 0}
+  score_Text: {fileID: 0}
+  wave_Text: {fileID: 0}
   UpgradePanel: {fileID: 0}
-  enemySpawnCooldown: 1
+  enemyMinSpawnCooldown: 0.2
+  enemyMaxSpawnCooldown: 0.7
   timeInBetweenWaves: 3
   baseEnemiesPerWave: 10
   enemyNumberIncreasePerWaveConstant: 1
+  baseTimePerWave: 30
+  timePerWave: 10
   bought: 1
+  doneSpawning: 1
