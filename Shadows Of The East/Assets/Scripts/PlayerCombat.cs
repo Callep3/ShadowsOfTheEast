@@ -229,7 +229,6 @@ public class PlayerCombat : MonoBehaviour, IDamagable
             Quaternion forwardRotation = Quaternion.Euler(0, 0, 45);
             if (facing == -1)
             {
-                Debug.Log("left facing airial");
                 forwardRotation = Quaternion.Euler(0, -180, -45);
             }
             fireballObject.transform.rotation = forwardRotation;
@@ -238,7 +237,6 @@ public class PlayerCombat : MonoBehaviour, IDamagable
 
         firballs.Add(fireballObject);
         fireCooldownTimer = fireCooldown;
-        Debug.Break();
     }
 
     public void TakeDamage(int damageAmount)
