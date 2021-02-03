@@ -902,7 +902,7 @@ PrefabInstance:
       objectReference: {fileID: 2072798447}
     - target: {fileID: 2106112522499035402, guid: a4a1c3b534b065d4e9a4e30802e02421, type: 3}
       propertyPath: enemySpawnCooldown
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4a1c3b534b065d4e9a4e30802e02421, type: 3}
