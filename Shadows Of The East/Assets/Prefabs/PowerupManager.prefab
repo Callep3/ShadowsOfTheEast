@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2654350641991521609}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.7363629, y: 1.9233699, z: 0.34844506}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -44,7 +44,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   redLotusPrefab: {fileID: 1849594477848199462, guid: e85b58fdf6a805a4d95799d11e675705, type: 3}
-  blueLotusPrefab: {fileID: 3514534733524476078, guid: 61324f5b72865404c9617f34bc98da3f, type: 3}
+  blueLotusPrefab: {fileID: 1831830023381764918, guid: 15de2742ef7652d4cb56cee64cce81c7, type: 3}
   minimumBeforeDrop: 3
   maximumBeforeDrop: 15
   maximumDifferenceBetweenDrops: 3
+  killsWithoutDrop: 0
+  blueLotusDrops: 0
+  redLotusDrops: 0
