@@ -124,6 +124,8 @@ MonoBehaviour:
   boxOffset: {x: 0, y: 0, z: 0}
   Size: {x: 0, y: 0, z: 0}
   powerUpDropYOffset: 2
+  zombieAnimation1: {fileID: 9100000, guid: f21e5954109168f41a18d71b35fe5a76, type: 2}
+  zombieAnimation2: {fileID: 9100000, guid: 8b6ceceaf7ceee84c971c5e0fe1236a3, type: 2}
   attackDamage: 2
 --- !u!61 &4749891672010588703
 BoxCollider2D:
