@@ -8,6 +8,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
     [SerializeField] private float attackRange = 0.5f;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask enemyLayers;
+    [SerializeField] private HUD hud;
     [Header("Light attack settings")]
     [SerializeField] public int lightAttackDamage = 12;
     [SerializeField] private float lightAttackCooldown = 0.5f;
@@ -15,6 +16,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
     [SerializeField] public int heavyAttackDamage = 25;
     [SerializeField] private float heavyAttackCooldown = 0.8f;
     [Header("Health Settings")]
+    [SerializeField] public int maxHealth = 20;
     [SerializeField] public int health = 20;
     [Header("Defence Settings")]
     [SerializeField] public int defence = 0;
@@ -229,6 +231,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
         if (!isDead)
         {
             health -= damageAmount - defence;
+            hud.UpdateHealth();
             if (health <= 0)
             {
                 //play death anim

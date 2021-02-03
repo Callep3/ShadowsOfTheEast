@@ -117,7 +117,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(baseTimePerWave + timePerWave * wave);
         if (wave != currentWave)
         {
-            Debug.Log("not current wave");
             doneSpawning = false;
         }
         else
