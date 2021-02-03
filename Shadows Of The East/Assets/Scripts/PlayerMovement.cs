@@ -57,10 +57,18 @@ public class PlayerMovement : MonoBehaviour
         dashCooldownTimer -= Time.deltaTime;
         jumpBuffer -= Time.deltaTime;
 
-        staminaRechargeTimer += Time.deltaTime;
-        if (staminaRechargeTimer >= 1f)
+        if (stamina < maxStamina)
         {
-            stamina += staminaPerSecond;
+            staminaRechargeTimer += Time.deltaTime;
+            if (staminaRechargeTimer >= 1f)
+            {
+                stamina += staminaPerSecond;
+                Mathf.Clamp(stamina, 0, maxStamina);
+                staminaRechargeTimer = 0;
+            }
+        }
+        else
+        {
             staminaRechargeTimer = 0;
         }
     }
