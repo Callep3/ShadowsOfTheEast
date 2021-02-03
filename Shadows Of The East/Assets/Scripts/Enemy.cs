@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 public class Enemy : MonoBehaviour, IDamagable
 {
-    [SerializeField] private float speed;
+    [SerializeField] private float speed = 1;
     [SerializeField] private float attackSpeed = 2; //Seconds
     [SerializeField] private Vector3 boxOffset;
     [SerializeField] private Vector3 Size;
@@ -31,7 +31,6 @@ public class Enemy : MonoBehaviour, IDamagable
         EnemyScaling();
         currentHealth = maxHealth;
         attackDistance = Random.Range(0, 3) / 10 + 1f;
-        speed = Random.Range(5, 10);
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         torque = Random.Range(-180, 180);
@@ -46,9 +45,15 @@ public class Enemy : MonoBehaviour, IDamagable
 
         // which way it's facing
         if (PlayerPosition.x > EnemyPosition.x)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
             facing = -1;
+        }    
         else
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
             facing = 1;
+        }
 
 
         // Attack & movement
@@ -98,7 +103,7 @@ public class Enemy : MonoBehaviour, IDamagable
 
         if (direction != 0)
         {
-            float realSpeed = direction * (Time.deltaTime * (speed / 10 + 1));
+            float realSpeed = direction * (Time.deltaTime * speed);
             if (distance > attackDistance && distance < attackDistance + 0.7f)
                 transform.position = new Vector2(transform.position.x + realSpeed / 1.5f, transform.position.y);
             else
