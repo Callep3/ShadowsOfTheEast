@@ -117,7 +117,7 @@ public class Enemy : MonoBehaviour, IDamagable
         GameObject powerup = PowerupManager.Instance.GetDrop();
         if (powerup != null)
         {  
-            Instantiate(powerup, transform.position, Quaternion.identity);
+            Instantiate(powerup, transform.position + Vector3.up, Quaternion.identity);
         }
         
         Destroy(gameObject);
