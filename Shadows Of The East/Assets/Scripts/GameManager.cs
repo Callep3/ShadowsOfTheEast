@@ -89,6 +89,8 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
+
+        doneSpawning = false;
         
         wave++;
 
