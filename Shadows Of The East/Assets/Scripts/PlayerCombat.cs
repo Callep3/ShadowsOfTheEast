@@ -83,8 +83,8 @@ public class PlayerCombat : MonoBehaviour, IDamagable
                     if (damagable != null)
                     {
                         damagable.TakeDamage(throwDamage + bonusDamage);
-                        //Destroy(Shurikens[i]);
-                        //Shurikens.Remove(Shurikens[i]);
+                        Destroy(Shurikens[i]);
+                        Shurikens.Remove(Shurikens[i]);
                     }
                 }
             }
