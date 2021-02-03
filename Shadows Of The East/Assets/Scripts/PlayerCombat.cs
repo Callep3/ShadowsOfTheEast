@@ -78,7 +78,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
             {
                 if (shurikens[i] != null)
                 {
-                    if (shurikens[i].transform.position.x < 35 && shurikens[i].transform.position.x > -35)
+                    if (shurikens[i].transform.position.x < 35 && shurikens[i].transform.position.x > -35 && shurikens[i].transform.position.y > -3.39f)
                     {
                         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(shurikens[i].transform.position, 0.15f, enemyLayers);
 
