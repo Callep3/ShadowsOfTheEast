@@ -22,6 +22,7 @@
           <e p="BlueLotus.cs" t="Include" />
           <e p="Enemy.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
+          <e p="HUD.cs" t="Include" />
           <e p="IDamagable.cs" t="Include" />
           <e p="MainMenu.cs" t="Include" />
           <e p="PlayerCombat.cs" t="Include" />

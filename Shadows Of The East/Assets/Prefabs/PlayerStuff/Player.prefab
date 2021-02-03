@@ -136,10 +136,12 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 64
+  hud: {fileID: 0}
   lightAttackDamage: 5
   lightAttackCooldown: 0.5
   heavyAttackDamage: 10
   heavyAttackCooldown: 0.8
+  maxHealth: 20
   health: 20
   defence: 0
   shuriken: {fileID: 6133943910620757403, guid: 09ecc44783c6ce644aeb07f7b5cd6676, type: 3}

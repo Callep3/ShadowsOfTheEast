@@ -43,6 +43,7 @@ public class UpgradePanelScript : MonoBehaviour
     
     public void HealthUpButton()
     {
+        playerCombat.maxHealth += healthIncrease;
         playerCombat.health += healthIncrease;
         
         UpgradeButtons();
