@@ -9,13 +9,15 @@ public class PlayerCombat : MonoBehaviour, IDamagable
     [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask enemyLayers;
     [Header("Light attack settings")]
-    [SerializeField] private int lightAttackDamage = 12;
+    [SerializeField] public int lightAttackDamage = 12;
     [SerializeField] private float lightAttackCooldown = 0.5f;
     [Header("Heavy attack settings")]
-    [SerializeField] private int heavyAttackDamage = 25;
+    [SerializeField] public int heavyAttackDamage = 25;
     [SerializeField] private float heavyAttackCooldown = 0.8f;
     [Header("Health Settings")]
-    [SerializeField] private int health = 20;
+    [SerializeField] public int health = 20;
+    [Header("Defence Settings")]
+    [SerializeField] public int defence = 0;
     [Header("Throwables Settings")]
     [SerializeField] private GameObject shuriken;
     [SerializeField] private int throwDamage = 3;
@@ -123,7 +125,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
     {
         if (!isDead)
         {
-            health -= damageAmount;
+            health -= damageAmount - defence;
             if (health <= 0)
             {
                 //play death anim
