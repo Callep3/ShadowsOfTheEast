@@ -53,6 +53,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
     {
         if (shurikens.Count > 0)
         {
+            List<GameObject> toRemoveShurikens = new List<GameObject>();
             for (int i = 0; i < shurikens.Count; i++)
             {
                 if (shurikens[i] != null)
@@ -68,16 +69,21 @@ public class PlayerCombat : MonoBehaviour, IDamagable
                             {
                                 damagable.TakeDamage(throwDamage);
                                 Destroy(shurikens[i]);
-                                shurikens.Remove(shurikens[i]);
+                                toRemoveShurikens.Add(shurikens[i]);
                             }
                         }
                     }
                     else
                     {
                         Destroy(shurikens[i]);
-                        shurikens.Remove(shurikens[i]);
+                        toRemoveShurikens.Add(shurikens[i]);
                     }
                 }
+            }
+
+            foreach (GameObject shuriken in toRemoveShurikens)
+            {
+                shurikens.Remove(shuriken);
             }
         }
     }
@@ -86,6 +92,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
     {
         if (firballs.Count > 0)
         {
+            List<GameObject> toRemoveFireball = new List<GameObject>();
             for (int i = 0; i < firballs.Count; i++)
             {
                 if (firballs[i].transform.position.x < 35 && firballs[i].transform.position.x > -35)
@@ -105,15 +112,21 @@ public class PlayerCombat : MonoBehaviour, IDamagable
 
                     if (enemyHit == true)
                     {
-                        firballs.Remove(firballs[i]);
+                        toRemoveFireball.Add(firballs[i]);
                         Destroy(firballs[i]);
+                        
                     }
                 }
                 else
                 {
                     Destroy(firballs[i]);
-                    firballs.Remove(firballs[i]);
+                    toRemoveFireball.Add(firballs[i]);                    
                 }
+            }
+
+            foreach (GameObject fireball in toRemoveFireball)
+            {
+                shurikens.Remove(fireball);
             }
         }
     }

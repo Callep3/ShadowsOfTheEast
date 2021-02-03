@@ -128,7 +128,9 @@ MonoBehaviour:
   powerUpDropYOffset: 2
   zombieAnimation1: {fileID: 9100000, guid: f21e5954109168f41a18d71b35fe5a76, type: 2}
   zombieAnimation2: {fileID: 9100000, guid: 8b6ceceaf7ceee84c971c5e0fe1236a3, type: 2}
+  soundScript: {fileID: 8467744360657951424}
   attackDamage: 2
+  maxHealth: 50
 --- !u!61 &4749891672010588703
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -285,3 +287,5 @@ MonoBehaviour:
   minimumTimeBeforeMoan: 3
   maximumTimeBeforeMoan: 10
   timerUntilNextMoan: 0
+  moanClip: {fileID: 8300000, guid: 90b2e6ada85c69144b86e18bc8e956a4, type: 3}
+  gettingHitSound: {fileID: 8300000, guid: 7284e5339c39188439d9a944b3bd51e6, type: 3}

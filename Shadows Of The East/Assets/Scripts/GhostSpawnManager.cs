@@ -37,7 +37,6 @@ public class GhostSpawnManager : MonoBehaviour
 
             if (numberOfActiveGhosts < maxAmountOfGhosts)
             {
-                Debug.Log("Spawned ghost");
                 SpawnGhost();
             }
         }

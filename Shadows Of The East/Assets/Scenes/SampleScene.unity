@@ -5276,18 +5276,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 803675280}
     m_Modifications:
-    - target: {fileID: 1594739506230041691, guid: 1ab6b583a5a742842b17cf443f490092, type: 3}
-      propertyPath: Loop
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1594739506230041691, guid: 1ab6b583a5a742842b17cf443f490092, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 7d6d887acf7a91743bdc4a1cd01ed965, type: 3}
-    - target: {fileID: 1594739506230041691, guid: 1ab6b583a5a742842b17cf443f490092, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2363888480787955632, guid: 1ab6b583a5a742842b17cf443f490092, type: 3}
       propertyPath: m_Name
       value: SoundManager
@@ -5397,6 +5385,10 @@ PrefabInstance:
       propertyPath: hud
       value: 
       objectReference: {fileID: 371297983}
+    - target: {fileID: 8419753988144869865, guid: ba15e08139986f14b8a4b6879e8b6578, type: 3}
+      propertyPath: maxHealth
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba15e08139986f14b8a4b6879e8b6578, type: 3}
 --- !u!114 &4073576982964821134 stripped

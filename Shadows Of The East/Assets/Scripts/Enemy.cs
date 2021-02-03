@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour, IDamagable
     [SerializeField] private float powerUpDropYOffset = 2f;
     [SerializeField] private AnimatorController zombieAnimation1;
     [SerializeField] private AnimatorController zombieAnimation2;
+    [SerializeField] private EnemySound soundScript;
     private Rigidbody2D rb;
     private float torque;
 
@@ -23,7 +24,7 @@ public class Enemy : MonoBehaviour, IDamagable
     private float hitCooldown = 0;
     private float attackTime = 0;
     private float attackDistance;
-    private float maxHealth = 3;
+    [SerializeField] private float maxHealth = 3;
     private float currentHealth = 0;
     private int facing;
 
@@ -127,10 +128,16 @@ public class Enemy : MonoBehaviour, IDamagable
         }
 
         if (currentHealth - Damage > 0)
+        {
             currentHealth -= Damage;
-        else         
+            soundScript.GotHit();
+        }
+        else
+        {
             //aniamtion
             Die();
+            soundScript.Died();
+        }
     }
 
     private void Die()
