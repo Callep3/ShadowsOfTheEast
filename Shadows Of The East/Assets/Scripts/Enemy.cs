@@ -120,6 +120,9 @@ public class Enemy : MonoBehaviour, IDamagable
         {  
             Instantiate(powerup, transform.position + (Vector3.up * powerUpDropYOffset), Quaternion.identity);
         }
+
+        ScoreManager.Instance.IncreaseCombo();
+        ScoreManager.Instance.IncreaseScore();
         
         Destroy(gameObject);
     }

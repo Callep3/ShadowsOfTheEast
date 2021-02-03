@@ -9,8 +9,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance = null;
     
     private int wave = 0;
-    public TMP_Text wave_Text;
     public TMP_Text enemiesLeft_Text;
+    public TMP_Text combo_Text;
+    public TMP_Text score_Text;
+    public TMP_Text wave_Text;
     public GameObject UpgradePanel;
 
     public float enemySpawnCooldown;
@@ -155,6 +157,16 @@ public class GameManager : MonoBehaviour
     private void UpdateWaveText()
     {
         wave_Text.text = "Wave: " + wave;
+    }
+
+    public void UpdateComboText()
+    {
+        combo_Text.text = "Combo: " + ScoreManager.Instance.combo;
+    }
+
+    public void UpdateScoreText()
+    {
+        score_Text.text = "Score: " + ScoreManager.Instance.score;
     }
     #endregion
 }
