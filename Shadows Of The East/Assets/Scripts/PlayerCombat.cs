@@ -65,7 +65,6 @@ public class PlayerCombat : MonoBehaviour, IDamagable
             {
                 if (shurikens[i].transform.position.x < 35 && shurikens[i].transform.position.x > -35)
                 {
-                    print("inside");
                     Collider2D[] hitColliders = Physics2D.OverlapCircleAll(shurikens[i].transform.position, 0.5f, enemyLayers);
 
                     foreach (Collider2D collider in hitColliders)
@@ -81,7 +80,6 @@ public class PlayerCombat : MonoBehaviour, IDamagable
                 }
                 else
                 {
-                    print("Outside");
                     Destroy(shurikens[i]);
                     shurikens.Remove(shurikens[i]);
                 }

@@ -22,7 +22,6 @@ public class BlueLotus : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other.gameObject.name);
         PlayerMovement movement = other.GetComponent<PlayerMovement>();
         if (movement != null)
         {
