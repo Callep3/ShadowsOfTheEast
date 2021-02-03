@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Enemy : MonoBehaviour, IDamagable
 {
@@ -22,6 +23,7 @@ public class Enemy : MonoBehaviour, IDamagable
 
     private void Start()
     {
+        EnemyScaling();
         currentHealth = maxHealth;
         attackDistance = Random.Range(0, 3) / 10 + 1f;
         speed = Random.Range(5, 10);
@@ -61,6 +63,12 @@ public class Enemy : MonoBehaviour, IDamagable
         if (hitCooldown < 1)
             hitCooldown += Time.deltaTime * 1f;
 
+    }
+
+    private void EnemyScaling()
+    {
+        maxHealth *= GameManager.Instance.wave;
+        attackDamage *= GameManager.Instance.wave;
     }
 
     private void MoveToPlayer()

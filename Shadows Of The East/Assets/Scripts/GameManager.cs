@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance = null;
     
-    private int wave = 0;
+    public int wave = 0;
     public TMP_Text enemiesLeft_Text;
     public TMP_Text combo_Text;
     public TMP_Text score_Text;

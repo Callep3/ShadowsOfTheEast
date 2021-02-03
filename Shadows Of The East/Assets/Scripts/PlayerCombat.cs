@@ -20,7 +20,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
     [SerializeField] public int defence = 0;
     [Header("Throwables Settings")]
     [SerializeField] private GameObject shuriken;
-    [SerializeField] private int throwDamage = 3;
+    [SerializeField] public int throwDamage = 3;
     [SerializeField] private float throwCooldown = 0.25f;
     [SerializeField] private float throwSpeed = 12;
     [Header("Fireballs")]
