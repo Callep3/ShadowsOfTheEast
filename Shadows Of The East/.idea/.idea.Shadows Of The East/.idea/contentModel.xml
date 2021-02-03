@@ -16,6 +16,7 @@
           <e p="PlayerMovement.cs" t="Include" />
           <e p="PowerupManager.cs" t="Include" />
           <e p="RedLotus.cs" t="Include" />
+          <e p="ScoreManager.cs" t="Include" />
           <e p="SpawnManager.cs" t="Include" />
           <e p="UpgradePanelScript.cs" t="Include" />
         </e>
