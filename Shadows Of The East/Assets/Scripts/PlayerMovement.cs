@@ -27,10 +27,12 @@ public class PlayerMovement : MonoBehaviour
     [Header("Jump settings")]
     [SerializeField] private float jumpForce = 2f;
     [SerializeField] private LayerMask groundLayers;
+    [SerializeField] private Transform jumpCheckPoint;
     private float jumpBuffer = 0;
     private float extraSpeed = 0;
     private int staminaReduction = 0;
     private float staminaRechargeTimer;
+    
 
     private void Awake()
     {
@@ -82,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (jumpBuffer > 0)
         {
-            if (Physics2D.Raycast(transform.position, Vector3.down, 0.7f, groundLayers))
+            if (Physics2D.Raycast(jumpCheckPoint.transform.position, Vector3.down, 0.2f, groundLayers))
             {
                 jumpBuffer = 0;
                 rigidBody.velocity = Vector2.up * jumpForce;
@@ -122,10 +124,12 @@ public class PlayerMovement : MonoBehaviour
             if (horizontal > 0)
             {
                 lastDirection = 1;
+                transform.rotation = Quaternion.Euler(0,0,0);
             }
             else
             {
                 lastDirection = -1;
+                transform.rotation = Quaternion.Euler(0, 180, 0);
             }
         }
 
