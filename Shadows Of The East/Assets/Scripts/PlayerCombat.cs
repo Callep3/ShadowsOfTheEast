@@ -119,11 +119,11 @@ public class PlayerCombat : MonoBehaviour, IDamagable
                         IDamagable damagable = collider.GetComponent<IDamagable>();
                         if (damagable != null)
                         {
-                            damagable.TakeDamage(fireDamage + bonusDamage);
-                            Destroy(firballs[i]);
-                            firballs.Remove(firballs[i]);
+                            damagable.TakeDamage(fireDamage + bonusDamage);                            
                         }
                     }
+                    Destroy(firballs[i]);
+                    firballs.Remove(firballs[i]);
                 }
                 else
                 {
