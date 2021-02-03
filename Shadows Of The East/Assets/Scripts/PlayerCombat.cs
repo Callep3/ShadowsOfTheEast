@@ -58,7 +58,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
             facing = 1;
         }
 
-        if (transform.position.y > -2)
+        if (transform.position.y > -1)
         {
             inAir = -1;
         }
@@ -78,7 +78,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
                 {
                     if (shurikens[i].transform.position.x < 35 && shurikens[i].transform.position.x > -35)
                     {
-                        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(shurikens[i].transform.position, 0.5f, enemyLayers);
+                        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(shurikens[i].transform.position, 0.15f, enemyLayers);
 
                         foreach (Collider2D collider in hitColliders)
                         {
