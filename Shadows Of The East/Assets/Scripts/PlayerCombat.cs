@@ -10,6 +10,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
     [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask enemyLayers;
     [SerializeField] private HUD hud;
+    [SerializeField] private GameOverScript gameOver;
     [Header("Light attack settings")]
     [SerializeField] public int lightAttackDamage = 12;
     [SerializeField] private float lightAttackCooldown = 0.5f;
@@ -101,7 +102,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
             List<GameObject> toRemoveFireball = new List<GameObject>();
             for (int i = 0; i < firballs.Count; i++)
             {
-                if (firballs[i].transform.position.x < 35 && firballs[i].transform.position.x > -35)
+                if (firballs[i].transform.position.x < 35 && firballs[i].transform.position.x > -35 && firballs[i])
                 {
 
                     Collider2D[] hitColliders = Physics2D.OverlapCircleAll(firballs[i].transform.position, 0.5f, enemyLayers);
@@ -262,6 +263,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
             {
                 //play death anim
                 GetComponent<PlayerMovement>().enabled = false;
+                gameOver.GameOver();
                 isDead = true;
             }
         }

@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 3661970347179011140}
   - component: {fileID: 4650616474208812089}
   - component: {fileID: 3374027414574485980}
-  - component: {fileID: 3946455391572912337}
   - component: {fileID: 4749891672010588703}
   - component: {fileID: 6094016959723851776}
   - component: {fileID: 5383161721296327456}
   - component: {fileID: 8467744360657951424}
+  - component: {fileID: -3613428262018457983}
   m_Layer: 6
-  m_Name: Enemy 1
+  m_Name: Boss
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 3342508672832813514}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.89945626, y: 0.8, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -100,7 +100,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -109,28 +109,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &3946455391572912337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3342508672832813514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbe29e61118db8c4ab38e30aacf70b20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  attackSpeed: 2
-  boxOffset: {x: 0, y: 0, z: 0}
-  Size: {x: 0, y: 0, z: 0}
-  powerUpDropYOffset: 2
-  zombieAnimation1: {fileID: 9100000, guid: f21e5954109168f41a18d71b35fe5a76, type: 2}
-  zombieAnimation2: {fileID: 9100000, guid: 8b6ceceaf7ceee84c971c5e0fe1236a3, type: 2}
-  soundScript: {fileID: 8467744360657951424}
-  attackDamage: 2
-  maxHealth: 5
 --- !u!61 &4749891672010588703
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -196,7 +174,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 4.0006914
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -289,5 +267,25 @@ MonoBehaviour:
   timerUntilNextMoan: 0
   moanClip: {fileID: 8300000, guid: 90b2e6ada85c69144b86e18bc8e956a4, type: 3}
   gettingHitSound: {fileID: 8300000, guid: 7284e5339c39188439d9a944b3bd51e6, type: 3}
-  attackSound: {fileID: 8300000, guid: 6e2aead737a987940b7d158117a0b78b, type: 3}
-  dyingSound: {fileID: 8300000, guid: 761dd2b01b619ac4a861f433b33714a8, type: 3}
+--- !u!114 &-3613428262018457983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3342508672832813514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b36f6c81910e949a64566289af429e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.5
+  attackSpeed: 2
+  boxOffset: {x: 0, y: 0, z: 0}
+  Size: {x: 0, y: 0, z: 0}
+  powerUpDropYOffset: 2
+  zombieAnimation1: {fileID: 9100000, guid: f21e5954109168f41a18d71b35fe5a76, type: 2}
+  zombieAnimation2: {fileID: 9100000, guid: 8b6ceceaf7ceee84c971c5e0fe1236a3, type: 2}
+  soundScript: {fileID: 8467744360657951424}
+  attackDamage: 20
+  maxHealth: 30
