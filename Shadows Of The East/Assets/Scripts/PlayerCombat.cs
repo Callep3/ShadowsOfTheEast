@@ -28,7 +28,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
     [SerializeField] public int throwDamage = 3;
     [SerializeField] private float throwCooldown = 0.25f;
     [SerializeField] private float throwSpeed = 12;
-    [SerializeField] private int shurikenAmount = 100;
+    [SerializeField] public int shurikenAmount = 100;
     [Header("Fireballs")]
     [SerializeField] private GameObject fireball;
     [SerializeField] private int fireDamage = 80;
@@ -215,6 +215,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
         if (shurikenAmount > 0)
         {
             shurikenAmount -= 1;
+            hud.UpdateShuriken();
 
             GameObject shurikenObject = Instantiate(shuriken, attackPoint.position + new Vector3(0,0.3f,0), transform.rotation);
 
