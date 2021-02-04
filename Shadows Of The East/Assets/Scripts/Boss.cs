@@ -1,5 +1,4 @@
-#if (UNITY_EDITOR)
-using System.Collections.Generic;
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -26,6 +25,7 @@ public class Boss : MonoBehaviour
     private float currentHealth = 0;
     private int facing;
 
+    private bool isVisible;
     private bool dead;
 
     private void Start()
@@ -120,16 +120,19 @@ public class Boss : MonoBehaviour
             currentHealth = maxHealth;
         }
 
-        if (currentHealth - Damage > 0)
+        if (isVisible)
         {
-            currentHealth -= Damage;
-            soundScript.GotHit();
-        }
-        else
-        {
-            //aniamtion
-            Die();
-            soundScript.Died();
+            if (currentHealth - Damage > 0)
+            {
+                currentHealth -= Damage;
+                soundScript.GotHit();
+            }
+            else
+            {
+                //aniamtion
+                Die();
+                soundScript.Died();
+            }
         }
     }
 
@@ -217,5 +220,20 @@ public class Boss : MonoBehaviour
                 hit2D.collider.GetComponent<IDamagable>().TakeDamage(attackDamage);
             }
     }
+
+    private void OnBecameVisible()
+    {
+        StartCoroutine(DelayVisable());
+    }
+
+    IEnumerator DelayVisable()
+    {
+        yield return new WaitForSeconds(0.5f);
+        isVisible = true;
+    }    
+
+    private void OnBecameInvisible()
+    {
+        isVisible = false;
+    }
 }
-#endif
