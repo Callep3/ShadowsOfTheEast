@@ -109,7 +109,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
                     foreach (Collider2D collider in hitColliders)
                     {
                         IDamagable damagable = collider.GetComponent<IDamagable>();
-                        if (damagable != null)
+                        if (damagable != null && collider.gameObject != null)
                         {
                             damagable.TakeDamage(fireDamage + bonusDamage);
                             enemyHit = true;
@@ -131,7 +131,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
 
             foreach (GameObject fireball in toRemoveFireball)
             {
-                shurikens.Remove(fireball);
+                firballs.Remove(fireball);
                 Destroy(fireball);
             }
         }
