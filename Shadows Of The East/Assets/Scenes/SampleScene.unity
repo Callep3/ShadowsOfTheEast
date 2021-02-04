@@ -5350,6 +5350,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1231976906, guid: ba15e08139986f14b8a4b6879e8b6578, type: 3}
+      propertyPath: dashCooldown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1231976906, guid: ba15e08139986f14b8a4b6879e8b6578, type: 3}
+      propertyPath: dashStaminaCost
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4073576981772182852, guid: ba15e08139986f14b8a4b6879e8b6578, type: 3}
       propertyPath: m_Name
       value: Player
