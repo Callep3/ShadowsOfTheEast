@@ -11,6 +11,12 @@ public class SoundManager : MonoBehaviour
     [Header("Zombie getting hit setting")]
     [SerializeField] private int maxAmountOfHitSettings = 5;
     private List<AudioSource> gettingHitSources = new List<AudioSource>();
+    [Header("Zombie dying sound settings")]
+    [SerializeField] private int maxAmountOfDyingSounds = 5;
+    private List<AudioSource> dyingSources = new List<AudioSource>();
+    [Header("Zombie attack sound settings")]
+    [SerializeField] private int maxAmountOfAttackSounds = 5;
+    private List<AudioSource> attackSources = new List<AudioSource>();
 
     public static SoundManager Instance;
     private void Awake()
@@ -31,6 +37,7 @@ public class SoundManager : MonoBehaviour
     {
         backgroundMusic.Stop();
     }
+    #region Getting hit sounds 
     public bool AllowedToPlayGettingHitSound(AudioSource hitSound)
     {
         UpdateGettingHitSound();
@@ -68,6 +75,9 @@ public class SoundManager : MonoBehaviour
             gettingHitSources.Remove(source);
         }
     }
+    #endregion
+
+    #region Moaning sounds
     public bool AllowedToPlayMoan(AudioSource moan)
     {
         UpdateMoans();
@@ -105,5 +115,85 @@ public class SoundManager : MonoBehaviour
             moanSources.Remove(source);
         }
     }
+    #endregion
 
+    #region Dying sounds
+    public bool AllowedToPlayDyingSound(AudioSource source)
+    {
+        UpdateDyingSounds();
+        if (dyingSources.Count >= maxAmountOfDyingSounds)
+        {
+            return false;
+        }
+        else
+        {
+            dyingSources.Add(source);
+            return true;
+        }
+    }
+
+    private void UpdateDyingSounds()
+    {
+        List<AudioSource> toRemoveSources = new List<AudioSource>();
+        foreach (AudioSource source in dyingSources)
+        {
+            if (source != null)
+            {
+                if (!source.isPlaying)
+                {
+                    toRemoveSources.Add(source);
+                }
+            }
+            else
+            {
+                toRemoveSources.Add(source);
+            }
+        }
+
+        foreach (AudioSource source in toRemoveSources)
+        {
+            dyingSources.Remove(source);
+        }
+    }
+    #endregion
+
+    #region Zombie attack sounds
+    public bool AllowedToPlayAttackSound(AudioSource source)
+    {
+        UpdateAttackSounds();
+        if (attackSources.Count >= maxAmountOfAttackSounds)
+        {
+            return false;
+        }
+        else
+        {
+            attackSources.Add(source);
+            return true;
+        }
+    }
+
+    private void UpdateAttackSounds()
+    {
+        List<AudioSource> toRemoveSources = new List<AudioSource>();
+        foreach (AudioSource source in attackSources)
+        {
+            if (source != null)
+            {
+                if (!source.isPlaying)
+                {
+                    toRemoveSources.Add(source);
+                }
+            }
+            else
+            {
+                toRemoveSources.Add(source);
+            }
+        }
+
+        foreach (AudioSource source in toRemoveSources)
+        {
+            attackSources.Remove(source);
+        }
+    }
+    #endregion
 }

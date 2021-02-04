@@ -5,7 +5,7 @@ using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Enemy : MonoBehaviour, IDamagable
+public class Boss : MonoBehaviour
 {
     [SerializeField] private float speed = 1;
     [SerializeField] private float attackSpeed = 2; //Seconds
@@ -20,11 +20,11 @@ public class Enemy : MonoBehaviour, IDamagable
 
     private GameObject player;
 
-    [SerializeField] private int attackDamage = 2;
+    [SerializeField] private int attackDamage = 20;
     private float hitCooldown = 0;
     private float attackTime = 0;
     private float attackDistance;
-    [SerializeField] private float maxHealth = 3;
+    [SerializeField] private float maxHealth = 30;
     private float currentHealth = 0;
     private int facing;
 
@@ -216,7 +216,6 @@ public class Enemy : MonoBehaviour, IDamagable
         else
             return;
 
-        soundScript.Attacked();
         RaycastHit2D hit2D;
         hit2D = Physics2D.BoxCast(transform.position + facingAttack, new Vector3(0.64f,1,0), 0, Vector2.zero, 0);
         if (hit2D.collider != null)

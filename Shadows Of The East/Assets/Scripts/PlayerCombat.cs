@@ -10,6 +10,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
     [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask enemyLayers;
     [SerializeField] private HUD hud;
+    [SerializeField] private GameOverScript gameOver;
     [Header("Light attack settings")]
     [SerializeField] public int lightAttackDamage = 12;
     [SerializeField] private float lightAttackCooldown = 0.5f;
@@ -61,21 +62,26 @@ public class PlayerCombat : MonoBehaviour, IDamagable
                     if (shurikens[i].transform.position.x < 35 && shurikens[i].transform.position.x > -35 && shurikens[i].transform.position.y > -3.39f)
                     {
                         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(shurikens[i].transform.position, 0.15f, enemyLayers);
-
+                        bool enemyHit = false;
                         foreach (Collider2D collider in hitColliders)
                         {
                             IDamagable damagable = collider.GetComponent<IDamagable>();
                             if (damagable != null)
                             {
                                 damagable.TakeDamage(throwDamage);
-                                Destroy(shurikens[i]);
-                                toRemoveShurikens.Add(shurikens[i]);
+                                enemyHit = true;
                             }
+                        }
+
+                        if (enemyHit)
+                        {
+                            toRemoveShurikens.Add(shurikens[i]);
+                            shurikens[i].SetActive(false);
                         }
                     }
                     else
                     {
-                        Destroy(shurikens[i]);
+                        shurikens[i].SetActive(false);
                         toRemoveShurikens.Add(shurikens[i]);
                     }
                 }
@@ -84,6 +90,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
             foreach (GameObject shuriken in toRemoveShurikens)
             {
                 shurikens.Remove(shuriken);
+                Destroy(shuriken);
             }
         }
     }
@@ -95,7 +102,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
             List<GameObject> toRemoveFireball = new List<GameObject>();
             for (int i = 0; i < firballs.Count; i++)
             {
-                if (firballs[i].transform.position.x < 35 && firballs[i].transform.position.x > -35)
+                if (firballs[i].transform.position.x < 35 && firballs[i].transform.position.x > -35 && firballs[i])
                 {
 
                     Collider2D[] hitColliders = Physics2D.OverlapCircleAll(firballs[i].transform.position, 0.5f, enemyLayers);
@@ -103,7 +110,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
                     foreach (Collider2D collider in hitColliders)
                     {
                         IDamagable damagable = collider.GetComponent<IDamagable>();
-                        if (damagable != null)
+                        if (damagable != null && collider.gameObject != null)
                         {
                             damagable.TakeDamage(fireDamage + bonusDamage);
                             enemyHit = true;
@@ -113,20 +120,20 @@ public class PlayerCombat : MonoBehaviour, IDamagable
                     if (enemyHit == true)
                     {
                         toRemoveFireball.Add(firballs[i]);
-                        Destroy(firballs[i]);
-                        
+                        firballs[i].SetActive(false);                        
                     }
                 }
                 else
                 {
-                    Destroy(firballs[i]);
+                    firballs[i].SetActive(false);
                     toRemoveFireball.Add(firballs[i]);                    
                 }
             }
 
             foreach (GameObject fireball in toRemoveFireball)
             {
-                shurikens.Remove(fireball);
+                firballs.Remove(fireball);
+                Destroy(fireball);
             }
         }
     }
@@ -256,6 +263,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
             {
                 //play death anim
                 GetComponent<PlayerMovement>().enabled = false;
+                gameOver.GameOver();
                 isDead = true;
             }
         }

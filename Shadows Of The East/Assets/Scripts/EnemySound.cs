@@ -9,6 +9,8 @@ public class EnemySound : MonoBehaviour
     [SerializeField] private float timerUntilNextMoan;
     [SerializeField] private AudioClip moanClip;
     [SerializeField] private AudioClip gettingHitSound;
+    [SerializeField] private AudioClip attackSound;
+    [SerializeField] private AudioClip dyingSound;
     AudioSource AudioSource;
     void Start()
     {
@@ -30,7 +32,26 @@ public class EnemySound : MonoBehaviour
 
     public void Died()
     {
+        if (!AudioSource.isPlaying)
+        {
+            if (SoundManager.Instance.AllowedToPlayDyingSound(AudioSource))
+            {
+                AudioSource.clip = dyingSound;
+                AudioSource.Play();
+            }
+        }
+    }
 
+    public void Attacked()
+    {
+        if (!AudioSource.isPlaying)
+        {
+            if (SoundManager.Instance.AllowedToPlayAttackSound(AudioSource))
+            {
+                AudioSource.clip = attackSound;
+                AudioSource.Play();
+            }
+        }
     }
 
     void Update()
