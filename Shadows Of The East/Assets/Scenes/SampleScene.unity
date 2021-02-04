@@ -5285,10 +5285,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PowerupManager
       objectReference: {fileID: 0}
-    - target: {fileID: 2861978611323508096, guid: e92b73050f31a864e9fd00663a7d1a64, type: 3}
-      propertyPath: blueLotusPrefab
-      value: 
-      objectReference: {fileID: 1831830023381764918, guid: 15de2742ef7652d4cb56cee64cce81c7, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e92b73050f31a864e9fd00663a7d1a64, type: 3}
 --- !u!1001 &2106112521814569308
