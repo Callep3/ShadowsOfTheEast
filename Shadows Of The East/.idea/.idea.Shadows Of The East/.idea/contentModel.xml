@@ -38,6 +38,7 @@
           <e p="PowerupManager.cs" t="Include" />
           <e p="RedLotus.cs" t="Include" />
           <e p="ScoreManager.cs" t="Include" />
+          <e p="ScreenFlash.cs" t="Include" />
           <e p="SoundManager.cs" t="Include" />
           <e p="SpawnManager.cs" t="Include" />
           <e p="UpgradeButtons.cs" t="Include" />

@@ -14,6 +14,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
     [SerializeField] private LayerMask enemyLayers;
     [SerializeField] private HUD hud;
     [SerializeField] private GameOverScript gameOver;
+    [SerializeField] private ScreenFlash screenFlash;
     [Header("Light attack settings")]
     [SerializeField] public int lightAttackDamage = 12;
     [SerializeField] private float lightAttackCooldown = 0.5f;
@@ -275,6 +276,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
             health -= Mathf.Clamp(damageAmount - defence, 1, damageAmount);
             GetComponent<SpriteRenderer>().color = Color.red;
             GetComponent<SpriteRenderer>().DOColor(Color.white, 0.2f);
+            screenFlash.TakeDamage();
             soundScript.OnGettingHit();
             hud.UpdateHealth();
             if (health <= 0)

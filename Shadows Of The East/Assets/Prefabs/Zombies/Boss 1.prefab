@@ -287,8 +287,8 @@ MonoBehaviour:
   powerUpDropYOffset: 2
   attackDistance: 3
   soundScript: {fileID: -3348174688350031960}
-  boxOffset: {x: 1.5, y: -1}
-  boxSize: {x: 2, y: 2}
+  boxOffset: {x: 2.25, y: -3}
+  boxSize: {x: 4, y: 1}
   attackDamage: 12
   maxHealth: 30
 --- !u!58 &6585063244698736980
