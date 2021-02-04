@@ -125,8 +125,6 @@ MonoBehaviour:
   attackSpeed: 1
   powerUpDropYOffset: 2
   attackDistance: 1.5
-  zombieAnimation1: {fileID: 9100000, guid: f21e5954109168f41a18d71b35fe5a76, type: 2}
-  zombieAnimation2: {fileID: 9100000, guid: 8b6ceceaf7ceee84c971c5e0fe1236a3, type: 2}
   soundScript: {fileID: 8467744360657951424}
   boxOffset: {x: 0, y: 0, z: 0}
   boxSize: {x: 0, y: 0, z: 0}
@@ -168,7 +166,7 @@ Animator:
   m_GameObject: {fileID: 3342508672832813514}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f21e5954109168f41a18d71b35fe5a76, type: 2}
+  m_Controller: {fileID: 9100000, guid: 867818fadaaaf854a8bef1c1c5a952ed, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

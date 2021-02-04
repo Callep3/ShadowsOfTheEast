@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,12 +10,11 @@ public class Enemy : MonoBehaviour, IDamagable
     [SerializeField] private float attackSpeed = 1; //Seconds
     [SerializeField] private float powerUpDropYOffset = 2f;
     [SerializeField] private float attackDistance = 1;
-    [SerializeField] private AnimatorController zombieAnimation1;
-    [SerializeField] private AnimatorController zombieAnimation2;
     [SerializeField] private EnemySound soundScript;
     [SerializeField] private Vector3 boxOffset;
     [SerializeField] private Vector3 boxSize;
 
+    private Animator animator;
     private Rigidbody2D rb;
     private float torque;
 
@@ -39,10 +37,11 @@ public class Enemy : MonoBehaviour, IDamagable
         rb = GetComponent<Rigidbody2D>();
         torque = Random.Range(-180, 180);
 
-        if ((int)Random.Range(0, 2) == 1)
-            GetComponent<Animator>().runtimeAnimatorController = zombieAnimation1;
-        else
-            GetComponent<Animator>().runtimeAnimatorController = zombieAnimation2;
+        animator = GetComponent<Animator>();
+        int random = Random.Range(0, 2);
+        animator.SetInteger("ZombieType", random);
+        Debug.Log(random);
+
     }
 
     private void Update()
@@ -125,8 +124,6 @@ public class Enemy : MonoBehaviour, IDamagable
         if (currentHealth - Damage > 0)
         {
             currentHealth -= Damage;
-            GetComponent<SpriteRenderer>().color = Color.red;
-            GetComponent<SpriteRenderer>().DOColor(Color.white, 0.2f);
             soundScript.GotHit();
         }
         else
@@ -139,7 +136,6 @@ public class Enemy : MonoBehaviour, IDamagable
 
     private void Die()
     {
-        GetComponent<SpriteRenderer>().color = Color.red;
         GameObject powerup = PowerupManager.Instance.GetDrop();
         if (powerup != null)
         {
@@ -159,6 +155,10 @@ public class Enemy : MonoBehaviour, IDamagable
         if (SpawnManager.Instance.numberOfEnemies <= 0)
         {
             GameManager.Instance.NextWave();
+            if (GameManager.Instance.doneSpawning)
+            {
+                GameManager.Instance.doneSpawning = false;
+            }
         }
 
         ScoreManager.Instance.ShakeCamera();
@@ -211,6 +211,7 @@ public class Enemy : MonoBehaviour, IDamagable
             return;
 
         soundScript.Attacked();
+        animator.SetTrigger("Attack");
         RaycastHit2D[] hit2D = Physics2D.BoxCastAll(new Vector2(transform.position.x, transform.position.y) + (Vector2)facingAttack, new Vector2(1.55f, 2), 0f, new Vector2(0,0));
 
         foreach (RaycastHit2D rayhit in hit2D)
