@@ -7,8 +7,11 @@ public class PlayerMovement : MonoBehaviour
 {
     private float PlayerPositionX;
     private Rigidbody2D rigidBody;
+<<<<<<< HEAD
+=======
     private Animator animator;
     public HUD hud;
+>>>>>>> 34f4bc346e1d1754d98553c98e8d6e5a993453f0
 
     [SerializeField] private PlayerAnimations animScript;
     [Header("Stamina Settings")]
@@ -105,8 +108,11 @@ public class PlayerMovement : MonoBehaviour
 
             dashCooldownTimer = dashCooldown;
             stamina -= dashStaminaCost;
+<<<<<<< HEAD
             animScript.OnDash();
+=======
             hud.UpdateMana();
+>>>>>>> 34f4bc346e1d1754d98553c98e8d6e5a993453f0
         }
     }
 
