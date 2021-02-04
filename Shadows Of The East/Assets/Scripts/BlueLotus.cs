@@ -8,9 +8,14 @@ public class BlueLotus : MonoBehaviour
     [SerializeField] private float bonusSpeed = 3f;    
     [SerializeField] private float duration = 7.5f;
     [SerializeField] private int staminaReduction = 10;
+    [SerializeField] private int shurikens = 10;
+    [SerializeField] private PlayerCombat playerCombat;
+    [SerializeField] private HUD hud;
     private void Start()
     {
         StartCoroutine(DespawnOverLifeTime());
+        playerCombat = GameObject.Find("Player").GetComponent<PlayerCombat>();
+        hud = GameObject.Find("HUD").GetComponent<HUD>();
     }
 
     IEnumerator DespawnOverLifeTime()
@@ -27,6 +32,8 @@ public class BlueLotus : MonoBehaviour
         {
             movement.AddMovementSpeed(duration, bonusSpeed, staminaReduction);
             Destroy(gameObject);
+            playerCombat.shurikenAmount += shurikens;
+            hud.UpdateShuriken();
         }
     }
 }
