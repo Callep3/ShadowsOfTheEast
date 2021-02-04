@@ -215,7 +215,13 @@ public class Enemy : MonoBehaviour, IDamagable
 
         soundScript.Attacked();
         animator.SetTrigger("Attack");
-        RaycastHit2D[] hit2D = Physics2D.BoxCastAll(new Vector2(transform.position.x, transform.position.y) + (Vector2)facingAttack, new Vector2(1.55f, 2), 0f, new Vector2(0,0));
+        StartCoroutine(TryToDamage(facingAttack));
+    }
+
+    private IEnumerator TryToDamage(Vector2 facing)
+    {
+        yield return new WaitForSeconds(0.25f);
+        RaycastHit2D[] hit2D = Physics2D.BoxCastAll(new Vector2(transform.position.x, transform.position.y) + (Vector2)facing, new Vector2(1.55f, 2), 0f, new Vector2(0, 0));
 
         foreach (RaycastHit2D rayhit in hit2D)
         {
