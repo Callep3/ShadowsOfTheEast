@@ -216,6 +216,7 @@ public class Enemy : MonoBehaviour, IDamagable
         else
             return;
 
+        soundScript.Attacked();
         RaycastHit2D hit2D;
         hit2D = Physics2D.BoxCast(transform.position + facingAttack, new Vector3(0.64f,1,0), 0, Vector2.zero, 0);
         if (hit2D.collider != null)

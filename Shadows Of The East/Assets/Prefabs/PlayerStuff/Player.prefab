@@ -169,6 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxStamina: 100
   staminaPerSecond: 5
+  stamina: 0
   speed: 5
   dashDistance: 5
   dashCooldown: 4

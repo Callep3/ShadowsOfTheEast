@@ -289,3 +289,5 @@ MonoBehaviour:
   timerUntilNextMoan: 0
   moanClip: {fileID: 8300000, guid: 90b2e6ada85c69144b86e18bc8e956a4, type: 3}
   gettingHitSound: {fileID: 8300000, guid: 7284e5339c39188439d9a944b3bd51e6, type: 3}
+  attackSound: {fileID: 8300000, guid: 6e2aead737a987940b7d158117a0b78b, type: 3}
+  dyingSound: {fileID: 8300000, guid: 761dd2b01b619ac4a861f433b33714a8, type: 3}
