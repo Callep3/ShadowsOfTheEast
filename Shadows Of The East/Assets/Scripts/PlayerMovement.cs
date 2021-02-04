@@ -20,7 +20,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Dash settings")]
     [SerializeField] private float dashDistance = 20f;
     [SerializeField] private float dashCooldown = 4f;
-    [SerializeField] private int dashStaminaCost = 25;    
+    [SerializeField] private int dashStaminaCost = 25;
+    //[SerializeField] private GameObject dashTrailPrefab;
+    [SerializeField] private GameObject dashTrailObject;   
     private float dashCooldownTimer = 0;
     public float lastDirection { private set; get; } = 1;
     [Header("Jump settings")]
@@ -102,12 +104,19 @@ public class PlayerMovement : MonoBehaviour
         if (dashCooldownTimer <= 0 && Input.GetAxis("Dash") > 0 && EnoughStaminaToDash())
         {
             PlayerPositionX += lastDirection * dashDistance;
-
+            StartCoroutine(DashTrail());
             dashCooldownTimer = dashCooldown;
             stamina -= dashStaminaCost;
             animScript.OnDash();
             hud.UpdateMana();
         }
+    }
+
+    IEnumerator DashTrail()
+    {
+        dashTrailObject.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        dashTrailObject.SetActive(false);
     }
 
     private bool EnoughStaminaToDash()
