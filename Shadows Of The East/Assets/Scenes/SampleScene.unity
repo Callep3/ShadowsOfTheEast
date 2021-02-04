@@ -1430,7 +1430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 108362971}
-  devider: 50
+  devider: 20
 --- !u!1 &463497119
 GameObject:
   m_ObjectHideFlags: 0
@@ -5822,6 +5822,12 @@ PrefabInstance:
     - target: {fileID: 4564733074122433967, guid: deea2afb9aafa404999f53362166914f, type: 3}
       propertyPath: m_Name
       value: Upgrade_Panel
+      objectReference: {fileID: 0}
+    - target: {fileID: 4953184717935446065, guid: deea2afb9aafa404999f53362166914f, type: 3}
+      propertyPath: m_text
+      value: 'Increase Damage
+
+        Light Attack+ 10 | Heavy Attack+ 20'
       objectReference: {fileID: 0}
     - target: {fileID: 8740077073136588589, guid: deea2afb9aafa404999f53362166914f, type: 3}
       propertyPath: hud
