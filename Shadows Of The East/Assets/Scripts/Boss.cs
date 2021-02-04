@@ -1,9 +1,9 @@
-using System.Collections;
+#if (UNITY_EDITOR)
 using System.Collections.Generic;
 using DG.Tweening;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UIElements;
+
 
 public class Boss : MonoBehaviour
 {
@@ -12,8 +12,6 @@ public class Boss : MonoBehaviour
     [SerializeField] private Vector3 boxOffset;
     [SerializeField] private Vector3 Size;
     [SerializeField] private float powerUpDropYOffset = 2f;
-    [SerializeField] private AnimatorController zombieAnimation1;
-    [SerializeField] private AnimatorController zombieAnimation2;
     [SerializeField] private EnemySound soundScript;
     private Rigidbody2D rb;
     private float torque;
@@ -38,11 +36,6 @@ public class Boss : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         torque = Random.Range(-180, 180);
-        
-        if ((int) Random.Range(0, 2) == 1)
-            GetComponent<Animator>().runtimeAnimatorController = zombieAnimation1;
-        else
-            GetComponent<Animator>().runtimeAnimatorController = zombieAnimation2;
     }
 
     private void Update()
@@ -171,7 +164,7 @@ public class Boss : MonoBehaviour
 
         DeathAnimation();
             
-        StartCoroutine(UntilDestroyed());
+        //StartCoroutine(UntilDestroyed());
     }
 
     private void DeathAnimation()
@@ -196,14 +189,14 @@ public class Boss : MonoBehaviour
             rb.AddTorque(torque, ForceMode2D.Force);
         }
     }
-    
+    /*
     private IEnumerator UntilDestroyed()
     {
         //yield return new WaitForSeconds(0.2f);
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
-
+*/
     private void Attack()
     {
         //attack player
@@ -225,3 +218,4 @@ public class Boss : MonoBehaviour
             }
     }
 }
+#endif

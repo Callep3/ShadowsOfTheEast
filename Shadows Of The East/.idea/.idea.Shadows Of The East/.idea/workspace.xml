@@ -21,8 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="64d1e807-6372-4b54-b9ac-bc9922c7aeef" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Shadows Of The East/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Shadows Of The East/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Boss.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Boss.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerCombat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerCombat.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +47,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/MainMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/RedLotus.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ScoreManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Boss.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SpawnManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameOverScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UpgradeButtons.cs" />
@@ -57,6 +57,7 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UpgradePanelScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerCombat.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Boss.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Enemy.cs" />
       </list>
     </option>
@@ -76,6 +77,14 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../../Builds\Shadows Of The East.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="D:\Unity\Builds" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
     <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
