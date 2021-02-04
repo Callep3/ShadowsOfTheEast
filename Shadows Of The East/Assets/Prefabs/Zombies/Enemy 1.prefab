@@ -129,7 +129,7 @@ MonoBehaviour:
   boxOffset: {x: 0, y: 0, z: 0}
   boxSize: {x: 0, y: 0, z: 0}
   attackDamage: 2
-  maxHealth: 5
+  maxHealth: 10
 --- !u!61 &4749891672010588703
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -35,6 +35,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
     [Header("Fireballs")]
     [SerializeField] private GameObject fireball;
     [SerializeField] private int fireDamage = 80;
+    [SerializeField] private int fireBallCost = 30;
     [SerializeField] private float fireCooldown = 5;
     [SerializeField] private float fireCooldownTimer = 0;
     [SerializeField] private float fireSpeed = 10;
@@ -267,6 +268,8 @@ public class PlayerCombat : MonoBehaviour, IDamagable
 
         firballs.Add(fireballObject);
         fireCooldownTimer = fireCooldown;
+        movementScript.stamina -= Mathf.Clamp(fireBallCost - movementScript.staminaReduction, 0, movementScript.maxStamina);
+        hud.UpdateMana();
     }
 
     public void TakeDamage(int damageAmount)
