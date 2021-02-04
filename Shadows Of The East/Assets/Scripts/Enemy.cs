@@ -23,23 +23,30 @@ public class Enemy : MonoBehaviour, IDamagable
     [SerializeField] private int attackDamage = 2;
     private float hitCooldown = 0;
     private float attackTime = 0;
-    [SerializeField] private float maxHealth = 3;
+    [SerializeField] private int maxHealth = 3;
     private float currentHealth = 0;
     private int facing;
 
     private bool dead;
-
+    private bool isVisible;
     private void Start()
     {
-        EnemyScaling();
         currentHealth = maxHealth;
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         torque = Random.Range(-180, 180);
+        animator = GetComponent<Animator>();       
+        animator.SetInteger("ZombieType", Random.Range(0, 2));
+        EnemyScaling();
+        RandomSize();
+    }
 
-        animator = GetComponent<Animator>();
-        int random = Random.Range(0, 2);
-        animator.SetInteger("ZombieType", random);
+    private void RandomSize()
+    {
+        float randomSize = Random.Range(0.75f, 1.30f);
+        transform.localScale = new Vector2(randomSize, randomSize);
+        maxHealth = Mathf.RoundToInt(maxHealth * randomSize);
+        attackDamage = Mathf.RoundToInt(attackDamage * randomSize);
     }
 
     private void Update()
@@ -119,18 +126,21 @@ public class Enemy : MonoBehaviour, IDamagable
             currentHealth = maxHealth;
         }
 
-        if (currentHealth - Damage > 0)
+        if (isVisible)
         {
-            currentHealth -= Damage;
-            GetComponent<SpriteRenderer>().color = Color.red;
-            GetComponent<SpriteRenderer>().DOColor(Color.white, 0.2f);
-            soundScript.GotHit();
-        }
-        else
-        {
-            //aniamtion
-            Die();
-            soundScript.Died();
+            if (currentHealth - Damage > 0)
+            {
+                currentHealth -= Damage;
+                GetComponent<SpriteRenderer>().color = Color.red;
+                GetComponent<SpriteRenderer>().DOColor(Color.white, 0.2f);
+                soundScript.GotHit();
+            }
+            else
+            {
+                //aniamtion
+                Die();
+                soundScript.Died();
+            }
         }
     }
 
@@ -201,7 +211,6 @@ public class Enemy : MonoBehaviour, IDamagable
 
     private void Attack()
     {
-        attackSpeed = Random.Range(1, 10) / 10 + 1;
         Vector3 facingAttack;
 
         if (facing == 1)
@@ -230,9 +239,19 @@ public class Enemy : MonoBehaviour, IDamagable
         }
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnBecameVisible()
     {
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawCube(transform.position + boxOffset, boxSize);
+        StartCoroutine(DelayVisable());
+    }
+
+    IEnumerator DelayVisable()
+    {
+        yield return new WaitForSeconds(0.5f);
+        isVisible = true;
+    }
+
+    private void OnBecameInvisible()
+    {
+        isVisible = false;
     }
 }

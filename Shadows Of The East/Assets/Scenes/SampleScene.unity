@@ -432,87 +432,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &51273073
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 803675280}
-    m_Modifications:
-    - target: {fileID: 313547432105089586, guid: 14737faed5b656147b9da462c3b4f6a8, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 12.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1549586205797544349, guid: 14737faed5b656147b9da462c3b4f6a8, type: 3}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1549586205797544349, guid: 14737faed5b656147b9da462c3b4f6a8, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.65
-      objectReference: {fileID: 0}
-    - target: {fileID: 1549586205797544349, guid: 14737faed5b656147b9da462c3b4f6a8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.21
-      objectReference: {fileID: 0}
-    - target: {fileID: 1549586205797544349, guid: 14737faed5b656147b9da462c3b4f6a8, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1549586205797544349, guid: 14737faed5b656147b9da462c3b4f6a8, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1549586205797544349, guid: 14737faed5b656147b9da462c3b4f6a8, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1549586205797544349, guid: 14737faed5b656147b9da462c3b4f6a8, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1549586205797544349, guid: 14737faed5b656147b9da462c3b4f6a8, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1549586205797544349, guid: 14737faed5b656147b9da462c3b4f6a8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1549586205797544349, guid: 14737faed5b656147b9da462c3b4f6a8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1549586205797544349, guid: 14737faed5b656147b9da462c3b4f6a8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5425322569114776375, guid: 14737faed5b656147b9da462c3b4f6a8, type: 3}
-      propertyPath: ghostPrefab
-      value: 
-      objectReference: {fileID: 2515540840780736513, guid: 24a02a22a8d437246865853ca9a91d9c, type: 3}
-    - target: {fileID: 5425322569114776375, guid: 14737faed5b656147b9da462c3b4f6a8, type: 3}
-      propertyPath: maximumSpawnTime
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 5425322569114776375, guid: 14737faed5b656147b9da462c3b4f6a8, type: 3}
-      propertyPath: minimumSpawnTime
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5425322569114776375, guid: 14737faed5b656147b9da462c3b4f6a8, type: 3}
-      propertyPath: maxAmountOfGhosts
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8309459279823321279, guid: 14737faed5b656147b9da462c3b4f6a8, type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8309459279823321279, guid: 14737faed5b656147b9da462c3b4f6a8, type: 3}
-      propertyPath: m_Name
-      value: BirdsSpawnManager
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 14737faed5b656147b9da462c3b4f6a8, type: 3}
 --- !u!1 &56576062
 GameObject:
   m_ObjectHideFlags: 0
@@ -2291,7 +2210,6 @@ Transform:
   - {fileID: 927785045}
   - {fileID: 953487073}
   - {fileID: 1584544077}
-  - {fileID: 1192375305}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2884,11 +2802,6 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 141751468701696276, guid: e92b73050f31a864e9fd00663a7d1a64, type: 3}
   m_PrefabInstance: {fileID: 745793024258317251}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1192375305 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1549586205797544349, guid: 14737faed5b656147b9da462c3b4f6a8, type: 3}
-  m_PrefabInstance: {fileID: 51273073}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1206471426
 GameObject:
@@ -5892,7 +5805,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8309459279823321279, guid: 14737faed5b656147b9da462c3b4f6a8, type: 3}
       propertyPath: m_Name
-      value: GhostSpawnManager
+      value: FlyingSpawnManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14737faed5b656147b9da462c3b4f6a8, type: 3}
