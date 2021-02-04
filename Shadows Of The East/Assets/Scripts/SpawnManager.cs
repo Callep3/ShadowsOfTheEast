@@ -8,6 +8,8 @@ public class SpawnManager : MonoBehaviour
     
     public GameObject spawnPositionLeft;
     public GameObject spawnPositionRight;
+    public GameObject spawnBossPositionLeft;
+    public GameObject spawnBossPositionRight;
     public GameObject enemyPrefab;
     public GameObject bossPrefab;
 
@@ -53,11 +55,11 @@ public class SpawnManager : MonoBehaviour
         numberOfEnemies++;
         if ((int)Random.Range(0, 2) == (int)Spawn_Point.Left)
         {
-            InstantiateEnemy(bossPrefab, spawnPositionLeft);
+            InstantiateEnemy(bossPrefab, spawnBossPositionLeft);
         }
         else
         {
-            InstantiateEnemy(bossPrefab, spawnPositionRight);
+            InstantiateEnemy(bossPrefab, spawnBossPositionRight);
         }
         GameManager.Instance.UpdateEnemiesLeftText();
     }

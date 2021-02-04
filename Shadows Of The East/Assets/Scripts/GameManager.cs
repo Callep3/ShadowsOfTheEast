@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
     private void CalculateNumberOfEnemiesToSpawn()
     {
         numberOfEnemiesToSpawn = (int) (baseEnemiesPerWave + (enemyNumberIncreasePerWaveConstant * wave));
-        numberOfBossesToSpawn = (int) (wave / 3);
+        numberOfBossesToSpawn = (int) (wave / 3)+ 3;
     }
 
     private IEnumerator EnemySpawner()
@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
         
         for (int i = 0; i < numberOfBossesToSpawn; i++)
         {
-            yield return new WaitForSeconds(Random.Range(enemyMinSpawnCooldown, enemyMaxSpawnCooldown));
+            yield return new WaitForSeconds(Random.Range(1f, 2f));
             SpawnManager.Instance.SpawnBoss();
         }
 

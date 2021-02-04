@@ -179,6 +179,7 @@ public class Boss : MonoBehaviour, IDamagable
 
         rb.constraints = RigidbodyConstraints2D.None;
         Destroy(GetComponent<BoxCollider2D>());
+        Destroy(GetComponent<CircleCollider2D>());
 
         if (PlayerPosition.x > EnemyPosition.x)
         {
