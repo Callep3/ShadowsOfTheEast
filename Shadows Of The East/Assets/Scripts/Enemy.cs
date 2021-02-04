@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class Enemy : MonoBehaviour, IDamagable
 {
     [SerializeField] private float speed = 1;
-    [SerializeField] private float attackSpeed = 1; //Seconds
+    [SerializeField] private float attackSpeed = 1.75f; //Seconds
     [SerializeField] private float powerUpDropYOffset = 2f;
     [SerializeField] private float attackDistance = 1;
     [SerializeField] private EnemySound soundScript;
@@ -40,8 +40,6 @@ public class Enemy : MonoBehaviour, IDamagable
         animator = GetComponent<Animator>();
         int random = Random.Range(0, 2);
         animator.SetInteger("ZombieType", random);
-        Debug.Log(random);
-
     }
 
     private void Update()
@@ -64,7 +62,7 @@ public class Enemy : MonoBehaviour, IDamagable
             MoveToPlayer();
         else
         {
-            attackTime += Time.deltaTime * 1f;
+            attackTime += Time.deltaTime;
 
             if (attackTime >= attackSpeed)
             {

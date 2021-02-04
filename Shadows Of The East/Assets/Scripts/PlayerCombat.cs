@@ -9,7 +9,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
     [SerializeField] private PlayerMovement movementScript;
     [SerializeField] private PlayerSound soundScript;
     [SerializeField] private PlayerAnimations animScript;
-    [SerializeField] private float attackRange = 0.5f;
+    [SerializeField] private float attackRange = 2f;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask enemyLayers;
     [SerializeField] private HUD hud;

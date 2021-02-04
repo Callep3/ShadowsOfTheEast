@@ -190,7 +190,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -33.62248}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -201,7 +201,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 68.24496}
   m_EdgeRadius: 0
 --- !u!212 &16923147
 SpriteRenderer:
@@ -6097,10 +6097,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8909464644589820224, guid: 8ae9a6fd655d3d942b6d1589fd581e10, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 79b23d1fd8d85b64095177cbe69b0053, type: 2}
     - target: {fileID: 8909464644589820225, guid: 8ae9a6fd655d3d942b6d1589fd581e10, type: 3}
       propertyPath: m_Name
       value: spoopyy boj1
@@ -6115,7 +6111,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8909464644589820226, guid: 8ae9a6fd655d3d942b6d1589fd581e10, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.52
+      value: 0.54
       objectReference: {fileID: 0}
     - target: {fileID: 8909464644589820226, guid: 8ae9a6fd655d3d942b6d1589fd581e10, type: 3}
       propertyPath: m_LocalPosition.z
