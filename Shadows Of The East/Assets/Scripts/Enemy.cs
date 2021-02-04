@@ -8,13 +8,15 @@ using UnityEngine.UIElements;
 public class Enemy : MonoBehaviour, IDamagable
 {
     [SerializeField] private float speed = 1;
-    [SerializeField] private float attackSpeed = 2; //Seconds
-    [SerializeField] private Vector3 boxOffset;
-    [SerializeField] private Vector3 Size;
+    [SerializeField] private float attackSpeed = 1; //Seconds
     [SerializeField] private float powerUpDropYOffset = 2f;
+    [SerializeField] private float attackDistance = 1;
     [SerializeField] private AnimatorController zombieAnimation1;
     [SerializeField] private AnimatorController zombieAnimation2;
     [SerializeField] private EnemySound soundScript;
+    [SerializeField] private Vector3 boxOffset;
+    [SerializeField] private Vector3 boxSize;
+
     private Rigidbody2D rb;
     private float torque;
 
@@ -23,7 +25,6 @@ public class Enemy : MonoBehaviour, IDamagable
     [SerializeField] private int attackDamage = 2;
     private float hitCooldown = 0;
     private float attackTime = 0;
-    private float attackDistance;
     [SerializeField] private float maxHealth = 3;
     private float currentHealth = 0;
     private int facing;
@@ -34,12 +35,11 @@ public class Enemy : MonoBehaviour, IDamagable
     {
         EnemyScaling();
         currentHealth = maxHealth;
-        attackDistance = Random.Range(0, 3) / 10 + 1f;
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         torque = Random.Range(-180, 180);
-        
-        if ((int) Random.Range(0, 2) == 1)
+
+        if ((int)Random.Range(0, 2) == 1)
             GetComponent<Animator>().runtimeAnimatorController = zombieAnimation1;
         else
             GetComponent<Animator>().runtimeAnimatorController = zombieAnimation2;
@@ -49,7 +49,6 @@ public class Enemy : MonoBehaviour, IDamagable
     {
         Vector2 PlayerPosition = player.transform.position;
         Vector2 EnemyPosition = transform.position;
-        float distance = Vector2.Distance(PlayerPosition, EnemyPosition);
 
 
         // which way it's facing
@@ -57,7 +56,7 @@ public class Enemy : MonoBehaviour, IDamagable
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
             facing = -1;
-        }    
+        }
         else
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
@@ -66,7 +65,7 @@ public class Enemy : MonoBehaviour, IDamagable
 
 
         // Attack & movement
-        if (distance > attackDistance)
+        if (PlayerPosition.x - EnemyPosition.x > attackDistance)
             MoveToPlayer();
         else
         {
@@ -75,6 +74,7 @@ public class Enemy : MonoBehaviour, IDamagable
             if (attackTime >= attackSpeed)
             {
                 attackTime = 0;
+                print("Nice");
                 Attack();
             }
         }
@@ -144,7 +144,7 @@ public class Enemy : MonoBehaviour, IDamagable
     {
         GameObject powerup = PowerupManager.Instance.GetDrop();
         if (powerup != null)
-        {  
+        {
             Instantiate(powerup, transform.position + (Vector3.up * powerUpDropYOffset), Quaternion.identity);
         }
 
@@ -157,7 +157,7 @@ public class Enemy : MonoBehaviour, IDamagable
             GetComponent<SpriteRenderer>().DOColor(new Color(0, 0, 0), 0.65f);
             GetComponent<SpriteRenderer>().DOFade(0, 0.7f);
         }
-        
+
         if (SpawnManager.Instance.numberOfEnemies <= 0)
         {
             GameManager.Instance.NextWave();
@@ -166,11 +166,11 @@ public class Enemy : MonoBehaviour, IDamagable
                 GameManager.Instance.doneSpawning = false;
             }
         }
-        
+
         ScoreManager.Instance.ShakeCamera();
 
         DeathAnimation();
-            
+
         StartCoroutine(UntilDestroyed());
     }
 
@@ -196,7 +196,7 @@ public class Enemy : MonoBehaviour, IDamagable
             rb.AddTorque(torque, ForceMode2D.Force);
         }
     }
-    
+
     private IEnumerator UntilDestroyed()
     {
         //yield return new WaitForSeconds(0.2f);
@@ -206,23 +206,25 @@ public class Enemy : MonoBehaviour, IDamagable
 
     private void Attack()
     {
-        //attack player
+        attackSpeed = Random.Range(1, 10) / 10 + 1;
         Vector3 facingAttack;
 
         if (facing == 1)
-            facingAttack = new Vector3(-0.54f, 0, 0);
+            facingAttack = new Vector2(-0.22f, 0.22f);
         else if (facing == -1)
-            facingAttack = new Vector3(0.53f, 0, 0);
+            facingAttack = new Vector2(0.22f, 0.22f);
         else
             return;
 
         soundScript.Attacked();
-        RaycastHit2D hit2D;
-        hit2D = Physics2D.BoxCast(transform.position + facingAttack, new Vector3(0.64f,1,0), 0, Vector2.zero, 0);
-        if (hit2D.collider != null)
-            if (hit2D.collider.CompareTag("Player"))
+        RaycastHit2D[] hit2D = Physics2D.BoxCastAll(new Vector2(transform.position.x, transform.position.y) + (Vector2)facingAttack, new Vector2(1.55f, 2), 0f, new Vector2(0,0));
+
+        foreach (RaycastHit2D rayhit in hit2D)
+        {
+            if (rayhit.collider.CompareTag("Player"))
             {
-                hit2D.collider.GetComponent<IDamagable>().TakeDamage(attackDamage);
+                rayhit.collider.GetComponent<IDamagable>().TakeDamage(attackDamage);
             }
+        }
     }
 }
