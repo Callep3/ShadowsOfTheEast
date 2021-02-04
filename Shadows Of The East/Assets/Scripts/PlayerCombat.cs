@@ -272,7 +272,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
     {
         if (!isDead)
         {
-            health -= damageAmount - defence;
+            health -= Mathf.Clamp(damageAmount - defence, 0, damageAmount);
             GetComponent<SpriteRenderer>().color = Color.red;
             GetComponent<SpriteRenderer>().DOColor(Color.white, 0.2f);
             soundScript.OnGettingHit();
