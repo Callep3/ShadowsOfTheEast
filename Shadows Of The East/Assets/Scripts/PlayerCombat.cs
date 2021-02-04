@@ -221,7 +221,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
             }
             else
             {
-                shurikenObject.GetComponent<Rigidbody2D>().velocity = new Vector3(movementScript.lastDirection * throwSpeed, -1 * throwSpeed, 90);
+                shurikenObject.GetComponent<Rigidbody2D>().velocity = new Vector3(movementScript.lastDirection * throwSpeed, -0.6f * throwSpeed, 90);
             }
             shurikens.Add(shurikenObject);
             attackCooldownTimer = throwCooldown;
@@ -235,7 +235,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
 
         if (!movementScript.IsGrounded())
         {
-            fireballObject.GetComponent<Rigidbody2D>().velocity = new Vector3(movementScript.lastDirection * fireSpeed, -1 * fireSpeed, 0);
+            fireballObject.GetComponent<Rigidbody2D>().velocity = new Vector3(movementScript.lastDirection * fireSpeed, -0.6f * fireSpeed, 0);
             // Angle it down when in-air
             Quaternion forwardRotation = Quaternion.Euler(0, 0, -45);
             if (movementScript.lastDirection == -1)
