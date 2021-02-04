@@ -5552,12 +5552,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1037530903}
     m_Modifications:
-    - target: {fileID: 3730501438139924474, guid: deea2afb9aafa404999f53362166914f, type: 3}
-      propertyPath: m_text
-      value: 'Increase Defence
-
-        Take 10 less damage'
-      objectReference: {fileID: 0}
     - target: {fileID: 4564733074122433966, guid: deea2afb9aafa404999f53362166914f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5645,19 +5639,6 @@ PrefabInstance:
     - target: {fileID: 4564733074122433967, guid: deea2afb9aafa404999f53362166914f, type: 3}
       propertyPath: m_Name
       value: Upgrade_Panel
-      objectReference: {fileID: 0}
-    - target: {fileID: 4953184717935446065, guid: deea2afb9aafa404999f53362166914f, type: 3}
-      propertyPath: m_text
-      value: 'Increase Damage
-
-        Light Attack+ 10 | Heavy Attack+ 20 | Shurikens+
-        6'
-      objectReference: {fileID: 0}
-    - target: {fileID: 5399062619590365707, guid: deea2afb9aafa404999f53362166914f, type: 3}
-      propertyPath: m_text
-      value: 'Increase Health
-
-        Max Health+ 40 | Full Heal'
       objectReference: {fileID: 0}
     - target: {fileID: 8740077073136588589, guid: deea2afb9aafa404999f53362166914f, type: 3}
       propertyPath: hud
