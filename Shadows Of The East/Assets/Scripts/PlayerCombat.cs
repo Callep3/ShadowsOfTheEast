@@ -6,6 +6,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
 {
     [Header("General settings")]
     [SerializeField] private PlayerMovement movementScript;
+    [SerializeField] private PlayerSound soundScript;
     [SerializeField] private float attackRange = 0.5f;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask enemyLayers;
@@ -187,6 +188,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
             }
         }
 
+        soundScript.OnLightAttack();
         attackCooldownTimer = lightAttackCooldown;
     }
 
@@ -203,6 +205,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
             }
         }
 
+        soundScript.OnHeavyAttack();
         attackCooldownTimer = heavyAttackCooldown;
     }
 
@@ -257,9 +260,11 @@ public class PlayerCombat : MonoBehaviour, IDamagable
         if (!isDead)
         {
             health -= damageAmount - defence;
+            soundScript.OnGettingHit();
             hud.UpdateHealth();
             if (health <= 0)
             {
+                soundScript.OnDeath();
                 //play death anim
                 GetComponent<PlayerMovement>().enabled = false;
                 isDead = true;
