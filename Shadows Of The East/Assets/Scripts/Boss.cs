@@ -1,28 +1,31 @@
-#if (UNITY_EDITOR)
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Random = UnityEngine.Random;
 
-
-public class Boss : MonoBehaviour
+public class Boss : MonoBehaviour, IDamagable
 {
     [SerializeField] private float speed = 1;
-    [SerializeField] private float attackSpeed = 2; //Seconds
-    [SerializeField] private Vector3 boxOffset;
-    [SerializeField] private Vector3 Size;
+    [SerializeField] private float attackSpeed = 1.75f; //Seconds
     [SerializeField] private float powerUpDropYOffset = 2f;
+    [SerializeField] private float attackDistance = 1;
     [SerializeField] private EnemySound soundScript;
+    [SerializeField] private Vector2 boxOffset;
+    [SerializeField] private Vector2 boxSize;
+
+    private Animator animator;
     private Rigidbody2D rb;
     private float torque;
 
     private GameObject player;
 
-    [SerializeField] private int attackDamage = 20;
+    [SerializeField] private int attackDamage = 6;
     private float hitCooldown = 0;
     private float attackTime = 0;
-    private float attackDistance;
-    [SerializeField] private float maxHealth = 30;
+    [SerializeField] private float maxHealth = 9;
     private float currentHealth = 0;
     private int facing;
 
@@ -32,25 +35,23 @@ public class Boss : MonoBehaviour
     {
         EnemyScaling();
         currentHealth = maxHealth;
-        attackDistance = Random.Range(0, 3) / 10 + 1f;
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         torque = Random.Range(-180, 180);
+
+        animator = GetComponent<Animator>();
+        int random = Random.Range(0, 2);
+        Debug.Log(random);
     }
 
     private void Update()
     {
-        Vector2 PlayerPosition = player.transform.position;
-        Vector2 EnemyPosition = transform.position;
-        float distance = Vector2.Distance(PlayerPosition, EnemyPosition);
-
-
         // which way it's facing
-        if (PlayerPosition.x > EnemyPosition.x)
+        if (player.transform.position.x > transform.position.x)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
             facing = -1;
-        }    
+        }
         else
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
@@ -59,7 +60,7 @@ public class Boss : MonoBehaviour
 
 
         // Attack & movement
-        if (distance > attackDistance)
+        if (player.transform.position.x - transform.position.x > attackDistance || transform.position.x - player.transform.position.x > attackDistance)
             MoveToPlayer();
         else
         {
@@ -123,6 +124,8 @@ public class Boss : MonoBehaviour
         if (currentHealth - Damage > 0)
         {
             currentHealth -= Damage;
+            GetComponent<SpriteRenderer>().color = Color.red;
+            GetComponent<SpriteRenderer>().DOColor(Color.white, 0.2f);
             soundScript.GotHit();
         }
         else
@@ -135,9 +138,10 @@ public class Boss : MonoBehaviour
 
     private void Die()
     {
+        GetComponent<SpriteRenderer>().color = Color.red;
         GameObject powerup = PowerupManager.Instance.GetDrop();
         if (powerup != null)
-        {  
+        {
             Instantiate(powerup, transform.position + (Vector3.up * powerUpDropYOffset), Quaternion.identity);
         }
 
@@ -150,7 +154,7 @@ public class Boss : MonoBehaviour
             GetComponent<SpriteRenderer>().DOColor(new Color(0, 0, 0), 0.65f);
             GetComponent<SpriteRenderer>().DOFade(0, 0.7f);
         }
-        
+
         if (SpawnManager.Instance.numberOfEnemies <= 0)
         {
             GameManager.Instance.NextWave();
@@ -159,12 +163,12 @@ public class Boss : MonoBehaviour
                 GameManager.Instance.doneSpawning = false;
             }
         }
-        
+
         ScoreManager.Instance.ShakeCamera();
 
         DeathAnimation();
-            
-        //StartCoroutine(UntilDestroyed());
+
+        StartCoroutine(UntilDestroyed());
     }
 
     private void DeathAnimation()
@@ -189,33 +193,47 @@ public class Boss : MonoBehaviour
             rb.AddTorque(torque, ForceMode2D.Force);
         }
     }
-    /*
+
     private IEnumerator UntilDestroyed()
     {
         //yield return new WaitForSeconds(0.2f);
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
-*/
+
     private void Attack()
     {
-        //attack player
         Vector3 facingAttack;
 
         if (facing == 1)
-            facingAttack = new Vector3(-0.54f, 0, 0);
+            facingAttack = new Vector2(-boxOffset.x, boxOffset.y);
         else if (facing == -1)
-            facingAttack = new Vector3(0.53f, 0, 0);
+            facingAttack = new Vector2(boxOffset.x, boxOffset.y);
         else
             return;
 
-        RaycastHit2D hit2D;
-        hit2D = Physics2D.BoxCast(transform.position + facingAttack, new Vector3(0.64f,1,0), 0, Vector2.zero, 0);
-        if (hit2D.collider != null)
-            if (hit2D.collider.CompareTag("Player"))
+        soundScript.Attacked();
+        animator.SetTrigger("Attack");
+
+        StartCoroutine(AttackAtFrame(facingAttack));
+    }
+
+    private IEnumerator AttackAtFrame(Vector3 facingAttack)
+    {
+        yield return new WaitForSeconds(1.5f); 
+        RaycastHit2D[] hit2D = Physics2D.BoxCastAll(new Vector2(transform.position.x, transform.position.y) + (Vector2)facingAttack, boxSize, 0f, new Vector2(0,0));
+        foreach (RaycastHit2D rayhit in hit2D)
+        {
+            if (rayhit.collider.CompareTag("Player"))
             {
-                hit2D.collider.GetComponent<IDamagable>().TakeDamage(attackDamage);
+                rayhit.collider.GetComponent<IDamagable>().TakeDamage(attackDamage);
             }
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawCube(new Vector2(transform.position.x, transform.position.y) + boxOffset, boxSize);
     }
 }
-#endif

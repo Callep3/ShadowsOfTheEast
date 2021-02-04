@@ -140,6 +140,11 @@ MonoBehaviour:
   spawnPositionRight: {fileID: 2678840247613044693}
   ghostPrefab: {fileID: 8909464644589820225, guid: 8ae9a6fd655d3d942b6d1589fd581e10, type: 3}
   maxAmountOfGhosts: 4
-  minimumSpawnTime: 5
-  maximumSpawnTime: 25
+  minimumGhostSpawnTime: 5
+  maximumGhostSpawnTime: 25
   numberOfActiveGhosts: 0
+  birdPrefab: {fileID: 1693894181220766489, guid: 8079bac6338d0624c932f2bb876d6045, type: 3}
+  maxAmountOfBirds: 4
+  minimumBirdsSpawnTime: 5
+  maximumBirdsSpawnTime: 25
+  numberOfActiveBirds: 0

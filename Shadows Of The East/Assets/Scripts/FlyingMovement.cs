@@ -2,8 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GhostMovement : MonoBehaviour
+public enum FlyingTypeEnum
 {
+    ghost,
+    bird
+}
+public class FlyingMovement : MonoBehaviour
+{
+    [SerializeField] private FlyingTypeEnum flyingType;
     [SerializeField] private float movementSpeed;
     [SerializeField] private float maxY;
     [SerializeField] private float minY;
@@ -34,7 +40,15 @@ public class GhostMovement : MonoBehaviour
         {
             if (transform.position.x > 25)
             {
-                GhostSpawnManager.Instance.numberOfActiveGhosts--;
+                switch (flyingType)
+                {
+                    case FlyingTypeEnum.ghost:
+                        FlyingEnvironmentSpawnManager.Instance.numberOfActiveGhosts--;
+                        break;
+                    case FlyingTypeEnum.bird:
+                        FlyingEnvironmentSpawnManager.Instance.numberOfActiveBirds--;
+                        break;
+                }
                 Destroy(gameObject);
             }            
         }
@@ -42,7 +56,7 @@ public class GhostMovement : MonoBehaviour
         {
             if (transform.position.x < -25)
             {
-                GhostSpawnManager.Instance.numberOfActiveGhosts--;
+                FlyingEnvironmentSpawnManager.Instance.numberOfActiveGhosts--;
                 Destroy(gameObject);
             }
         }
