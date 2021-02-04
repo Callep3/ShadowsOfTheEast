@@ -733,10 +733,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hud: {fileID: 0}
-  lightAttackIncrease: 5
-  heavyAttackIncrease: 10
-  throwDamageIncrease: 3
-  healthIncrease: 20
+  lightAttackIncrease: 10
+  heavyAttackIncrease: 20
+  throwDamageIncrease: 6
+  healthIncrease: 40
 --- !u!114 &7064546328469921966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1112,7 +1112,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Increase Defence
 
-    Take 5 less damage'
+    Take 10 less damage'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 94e79f500ad1a8747b8942069f607a45, type: 2}
   m_sharedMaterial: {fileID: 8753712361898547822, guid: 94e79f500ad1a8747b8942069f607a45, type: 2}
@@ -1324,7 +1324,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Increase Damage
 
-    Light Attack+ 5 | Heavy Attack+ 10 | Shurikens+ 3'
+    Light Attack+ 10 | Heavy Attack+ 20 | Shurikens+
+    6'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 94e79f500ad1a8747b8942069f607a45, type: 2}
   m_sharedMaterial: {fileID: 8753712361898547822, guid: 94e79f500ad1a8747b8942069f607a45, type: 2}
@@ -1536,7 +1537,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Increase Health
 
-    Max Health+ 20 | Full Heal'
+    Max Health+ 40 | Full Heal'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 94e79f500ad1a8747b8942069f607a45, type: 2}
   m_sharedMaterial: {fileID: 8753712361898547822, guid: 94e79f500ad1a8747b8942069f607a45, type: 2}

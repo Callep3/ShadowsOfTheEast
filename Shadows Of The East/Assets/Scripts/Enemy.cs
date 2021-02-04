@@ -125,6 +125,8 @@ public class Enemy : MonoBehaviour, IDamagable
         if (currentHealth - Damage > 0)
         {
             currentHealth -= Damage;
+            GetComponent<SpriteRenderer>().color = Color.red;
+            GetComponent<SpriteRenderer>().DOColor(Color.white, 0.2f);
             soundScript.GotHit();
         }
         else
@@ -137,6 +139,7 @@ public class Enemy : MonoBehaviour, IDamagable
 
     private void Die()
     {
+        GetComponent<SpriteRenderer>().color = Color.red;
         GameObject powerup = PowerupManager.Instance.GetDrop();
         if (powerup != null)
         {

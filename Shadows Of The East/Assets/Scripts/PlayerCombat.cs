@@ -43,15 +43,22 @@ public class PlayerCombat : MonoBehaviour, IDamagable
     private List<GameObject> firballs = new List<GameObject>();
     private int bonusDamage = 0;
 
+    private Rigidbody2D rb;
+    private float torque;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        torque = Random.Range(-180, 180);
+    }
+    
     private void Update()
     {
         UpdateMeleeCombat();
         UpdateShurikens();
         UpdateFireballs();
     }
-
-
-
+    
     private void UpdateShurikens()
     {
         if (shurikens.Count > 0)
@@ -270,13 +277,22 @@ public class PlayerCombat : MonoBehaviour, IDamagable
             if (health <= 0)
             {
                 soundScript.OnDeath();
-                //play death anim
+                DeathAnimation();
                 GetComponent<PlayerMovement>().enabled = false;
                 gameOver.GameOver();
                 isDead = true;
                 enabled = false;
             }
         }
+    }
+
+    private void DeathAnimation()
+    {
+        rb.constraints = RigidbodyConstraints2D.None;
+        Destroy(GetComponent<BoxCollider2D>());
+        GetComponent<SpriteRenderer>().color = Color.red;
+        rb.AddForce(new Vector2(Random.Range(-10, 0), Random.Range(3, 10)), ForceMode2D.Impulse);
+        rb.AddTorque(torque, ForceMode2D.Force);
     }
 
     public void AddBonusDamage(float duration, int damage)
