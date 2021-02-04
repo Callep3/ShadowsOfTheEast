@@ -7,8 +7,8 @@ public class PlayerMovement : MonoBehaviour
 {
     private float PlayerPositionX;
     private Rigidbody2D rigidBody;
-    private Animator animator;
 
+    [SerializeField] private PlayerAnimations animScript;
     [Header("Stamina Settings")]
     [SerializeField] private int maxStamina = 100;
     [SerializeField] private int staminaPerSecond = 5;
@@ -37,7 +37,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
         stamina = maxStamina;
     }
@@ -88,17 +87,10 @@ public class PlayerMovement : MonoBehaviour
         {
             if (IsGrounded())
             {
-                animator.SetFloat("CharacterState", 4);
                 jumpBuffer = 0;
                 rigidBody.velocity = Vector2.up * jumpForce;
-            }
-            else
-            {
-                if (animator.GetFloat("CharacterState") == 4)
-                {
-                    animator.SetFloat("CharacterState", 1);
-                }
-            }
+                animScript.OnJump();
+            }            
         }
     }
 
@@ -110,6 +102,7 @@ public class PlayerMovement : MonoBehaviour
 
             dashCooldownTimer = dashCooldown;
             stamina -= dashStaminaCost;
+            animScript.OnDash();
         }
     }
 
@@ -131,7 +124,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (horizontal != 0)
         {
-            animator.SetFloat("CharacterState", 3);
             if (horizontal > 0)
             {
                 lastDirection = 1;

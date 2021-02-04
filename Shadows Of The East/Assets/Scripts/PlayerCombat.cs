@@ -7,6 +7,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
     [Header("General settings")]
     [SerializeField] private PlayerMovement movementScript;
     [SerializeField] private PlayerSound soundScript;
+    [SerializeField] private PlayerAnimations animScript;
     [SerializeField] private float attackRange = 0.5f;
     [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask enemyLayers;
@@ -190,6 +191,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
         }
 
         soundScript.OnLightAttack();
+        animScript.OnLightAttack();
         attackCooldownTimer = lightAttackCooldown;
     }
 
@@ -270,6 +272,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
                 GetComponent<PlayerMovement>().enabled = false;
                 gameOver.GameOver();
                 isDead = true;
+                enabled = false;
             }
         }
     }

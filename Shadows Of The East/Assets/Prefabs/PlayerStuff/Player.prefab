@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 8419753988144869865}
   - component: {fileID: 1231976906}
   - component: {fileID: 7760766886290627362}
+  - component: {fileID: 6194516270914461403}
   - component: {fileID: 5314770036059409765}
   - component: {fileID: 547759273924048389}
   - component: {fileID: 25508027}
@@ -135,6 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementScript: {fileID: 1231976906}
   soundScript: {fileID: 7760766886290627362}
+  animScript: {fileID: 6194516270914461403}
   attackRange: 0.5
   attackPoint: {fileID: 5580136052782428722}
   enemyLayers:
@@ -171,6 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 997dd01077e4e5643982c36be2e8904d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animScript: {fileID: 6194516270914461403}
   maxStamina: 100
   staminaPerSecond: 5
   stamina: 0
@@ -199,6 +202,20 @@ MonoBehaviour:
   lightAttackSound: {fileID: 8300000, guid: cde0ae1084e916941b94f5c538cad983, type: 3}
   heavyAttackSound: {fileID: 8300000, guid: 9c97a103ff34f254fb090a4c969316e6, type: 3}
   dyingSound: {fileID: 8300000, guid: 85b999e71e94e244881626476427ec53, type: 3}
+--- !u!114 &6194516270914461403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4073576981772182852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1c77c2a229dd1a49b97eaf517e1d394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combatScript: {fileID: 8419753988144869865}
+  movementScript: {fileID: 1231976906}
 --- !u!50 &5314770036059409765
 Rigidbody2D:
   serializedVersion: 4
@@ -385,7 +402,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8357537647689688973}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.642, y: -0.259, z: 0}
+  m_LocalPosition: {x: 0.729, y: -0.259, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4073576981772182854}
