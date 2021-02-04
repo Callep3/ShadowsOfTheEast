@@ -138,7 +138,7 @@ MonoBehaviour:
   movementScript: {fileID: 1231976906}
   soundScript: {fileID: 7760766886290627362}
   animScript: {fileID: 6194516270914461403}
-  attackRange: 0.5
+  attackRange: 0.6
   attackPoint: {fileID: 5580136052782428722}
   enemyLayers:
     serializedVersion: 2

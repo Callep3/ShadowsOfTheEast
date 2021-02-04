@@ -45,6 +45,11 @@ public class PlayerAnimations : MonoBehaviour
         animator.SetTrigger("LightAttack");
     }
 
+    public void OnHeavyAttack()
+    {
+        animator.SetTrigger("HeavyAttack");
+    }
+
     public void OnDash()
     {
         animator.SetTrigger("Dash");

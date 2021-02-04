@@ -209,6 +209,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
         }
 
         soundScript.OnHeavyAttack();
+        animScript.OnHeavyAttack();
         attackCooldownTimer = heavyAttackCooldown;
     }
 
