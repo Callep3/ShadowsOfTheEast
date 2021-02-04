@@ -45,8 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   redLotusPrefab: {fileID: 1849594477848199462, guid: e85b58fdf6a805a4d95799d11e675705, type: 3}
   blueLotusPrefab: {fileID: 1831830023381764918, guid: 15de2742ef7652d4cb56cee64cce81c7, type: 3}
-  minimumBeforeDrop: 3
-  maximumBeforeDrop: 15
+  minimumBeforeDrop: 7
+  maximumBeforeDrop: 35
   maximumDifferenceBetweenDrops: 3
   killsWithoutDrop: 0
   blueLotusDrops: 0
