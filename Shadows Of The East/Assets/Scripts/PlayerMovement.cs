@@ -8,9 +8,10 @@ public class PlayerMovement : MonoBehaviour
     private float PlayerPositionX;
     private Rigidbody2D rigidBody;
     private Animator animator;
+    public HUD hud;
 
     [Header("Stamina Settings")]
-    [SerializeField] private int maxStamina = 100;
+    [SerializeField] public int maxStamina = 100;
     [SerializeField] private int staminaPerSecond = 5;
     public int stamina;
     [Header("Movement settings")]
@@ -69,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
                 stamina += staminaPerSecond;
                 Mathf.Clamp(stamina, 0, maxStamina);
                 staminaRechargeTimer = 0;
+                hud.UpdateMana();
             }
         }
         else
@@ -110,6 +112,7 @@ public class PlayerMovement : MonoBehaviour
 
             dashCooldownTimer = dashCooldown;
             stamina -= dashStaminaCost;
+            hud.UpdateMana();
         }
     }
 

@@ -785,6 +785,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7422238859092066424, guid: 01620c0b9d3cef240ad8e2931b2a5b09, type: 3}
   m_PrefabInstance: {fileID: 7422238858980598801}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &175213400 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1231976906, guid: ba15e08139986f14b8a4b6879e8b6578, type: 3}
+  m_PrefabInstance: {fileID: 4073576982964821133}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 997dd01077e4e5643982c36be2e8904d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &175944167
 GameObject:
   m_ObjectHideFlags: 0
@@ -5351,12 +5362,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1231976906, guid: ba15e08139986f14b8a4b6879e8b6578, type: 3}
+      propertyPath: hud
+      value: 
+      objectReference: {fileID: 371297983}
+    - target: {fileID: 1231976906, guid: ba15e08139986f14b8a4b6879e8b6578, type: 3}
       propertyPath: dashCooldown
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1231976906, guid: ba15e08139986f14b8a4b6879e8b6578, type: 3}
       propertyPath: dashStaminaCost
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4073576981772182852, guid: ba15e08139986f14b8a4b6879e8b6578, type: 3}
       propertyPath: m_Name
@@ -5839,9 +5854,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 721902160499548406, guid: a60ddd724bb3a2147aa1b26c14e8cc2e, type: 3}
+      propertyPath: manaFilling
+      value: 
+      objectReference: {fileID: 8741455389725269510}
+    - target: {fileID: 721902160499548406, guid: a60ddd724bb3a2147aa1b26c14e8cc2e, type: 3}
       propertyPath: playerCombat
       value: 
       objectReference: {fileID: 4073576982964821134}
+    - target: {fileID: 721902160499548406, guid: a60ddd724bb3a2147aa1b26c14e8cc2e, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 175213400}
     - target: {fileID: 842202621169174986, guid: a60ddd724bb3a2147aa1b26c14e8cc2e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -5972,6 +5995,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a60ddd724bb3a2147aa1b26c14e8cc2e, type: 3}
+--- !u!114 &8741455389725269510 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8813850454322331717, guid: a60ddd724bb3a2147aa1b26c14e8cc2e, type: 3}
+  m_PrefabInstance: {fileID: 8741455389725269509}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8909464644158167113
 PrefabInstance:
   m_ObjectHideFlags: 0
