@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class UpgradePanelScript : MonoBehaviour
 {
@@ -45,7 +46,7 @@ public class UpgradePanelScript : MonoBehaviour
     public void HealthUpButton()
     {
         playerCombat.maxHealth += healthIncrease;
-        playerCombat.health += healthIncrease;
+        playerCombat.health = playerCombat.maxHealth;
         hud.UpdateHealth();
         
         UpgradeButtons();

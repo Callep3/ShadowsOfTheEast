@@ -11,6 +11,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
     [SerializeField] private Transform attackPoint;
     [SerializeField] private LayerMask enemyLayers;
     [SerializeField] private HUD hud;
+    [SerializeField] private GameOverScript gameOver;
     [Header("Light attack settings")]
     [SerializeField] public int lightAttackDamage = 12;
     [SerializeField] private float lightAttackCooldown = 0.5f;
@@ -102,7 +103,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
             List<GameObject> toRemoveFireball = new List<GameObject>();
             for (int i = 0; i < firballs.Count; i++)
             {
-                if (firballs[i].transform.position.x < 35 && firballs[i].transform.position.x > -35)
+                if (firballs[i].transform.position.x < 35 && firballs[i].transform.position.x > -35 && firballs[i])
                 {
 
                     Collider2D[] hitColliders = Physics2D.OverlapCircleAll(firballs[i].transform.position, 0.5f, enemyLayers);
@@ -223,7 +224,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
             }
             else
             {
-                shurikenObject.GetComponent<Rigidbody2D>().velocity = new Vector3(movementScript.lastDirection * throwSpeed, -1 * throwSpeed, 90);
+                shurikenObject.GetComponent<Rigidbody2D>().velocity = new Vector3(movementScript.lastDirection * throwSpeed, -0.6f * throwSpeed, 90);
             }
             shurikens.Add(shurikenObject);
             attackCooldownTimer = throwCooldown;
@@ -237,7 +238,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
 
         if (!movementScript.IsGrounded())
         {
-            fireballObject.GetComponent<Rigidbody2D>().velocity = new Vector3(movementScript.lastDirection * fireSpeed, -1 * fireSpeed, 0);
+            fireballObject.GetComponent<Rigidbody2D>().velocity = new Vector3(movementScript.lastDirection * fireSpeed, -0.6f * fireSpeed, 0);
             // Angle it down when in-air
             Quaternion forwardRotation = Quaternion.Euler(0, 0, -45);
             if (movementScript.lastDirection == -1)
@@ -267,6 +268,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
                 soundScript.OnDeath();
                 //play death anim
                 GetComponent<PlayerMovement>().enabled = false;
+                gameOver.GameOver();
                 isDead = true;
             }
         }

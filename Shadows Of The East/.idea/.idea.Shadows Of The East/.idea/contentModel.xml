@@ -20,8 +20,14 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="BlueLotus.cs" t="Include" />
+          <e p="Boss.cs" t="Include" />
+          <e p="ButtonBehaviour.cs" t="Include" />
           <e p="Enemy.cs" t="Include" />
+          <e p="EnemySound.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
+          <e p="GameOverScript.cs" t="Include" />
+          <e p="GhostMovement.cs" t="Include" />
+          <e p="GhostSpawnManager.cs" t="Include" />
           <e p="HUD.cs" t="Include" />
           <e p="IDamagable.cs" t="Include" />
           <e p="MainMenu.cs" t="Include" />
@@ -30,7 +36,9 @@
           <e p="PowerupManager.cs" t="Include" />
           <e p="RedLotus.cs" t="Include" />
           <e p="ScoreManager.cs" t="Include" />
+          <e p="SoundManager.cs" t="Include" />
           <e p="SpawnManager.cs" t="Include" />
+          <e p="UpgradeButtons.cs" t="Include" />
           <e p="UpgradePanelScript.cs" t="Include" />
         </e>
         <e p="TextMesh Pro" t="Include">
