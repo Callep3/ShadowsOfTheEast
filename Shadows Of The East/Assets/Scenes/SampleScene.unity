@@ -5861,54 +5861,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1037530903}
     m_Modifications:
-    - target: {fileID: 1004449628, guid: a60ddd724bb3a2147aa1b26c14e8cc2e, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1004449628, guid: a60ddd724bb3a2147aa1b26c14e8cc2e, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1004449628, guid: a60ddd724bb3a2147aa1b26c14e8cc2e, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2072798446, guid: a60ddd724bb3a2147aa1b26c14e8cc2e, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2072798446, guid: a60ddd724bb3a2147aa1b26c14e8cc2e, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 721902160499548406, guid: a60ddd724bb3a2147aa1b26c14e8cc2e, type: 3}
       propertyPath: playerCombat
       value: 
       objectReference: {fileID: 4073576982964821134}
-    - target: {fileID: 4548884138330050398, guid: a60ddd724bb3a2147aa1b26c14e8cc2e, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4548884138330050398, guid: a60ddd724bb3a2147aa1b26c14e8cc2e, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4548884138330050398, guid: a60ddd724bb3a2147aa1b26c14e8cc2e, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8741455388521273551, guid: a60ddd724bb3a2147aa1b26c14e8cc2e, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8741455388521273551, guid: a60ddd724bb3a2147aa1b26c14e8cc2e, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8741455388521273551, guid: a60ddd724bb3a2147aa1b26c14e8cc2e, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8741455388531362136, guid: a60ddd724bb3a2147aa1b26c14e8cc2e, type: 3}
       propertyPath: m_Name
       value: IngameUI_Panel
