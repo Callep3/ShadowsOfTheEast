@@ -47,12 +47,8 @@ public class Enemy : MonoBehaviour, IDamagable
 
     private void Update()
     {
-        Vector2 PlayerPosition = player.transform.position;
-        Vector2 EnemyPosition = transform.position;
-
-
         // which way it's facing
-        if (PlayerPosition.x > EnemyPosition.x)
+        if (player.transform.position.x > transform.position.x)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
             facing = -1;
@@ -65,7 +61,7 @@ public class Enemy : MonoBehaviour, IDamagable
 
 
         // Attack & movement
-        if (PlayerPosition.x - EnemyPosition.x > attackDistance)
+        if (player.transform.position.x - transform.position.x > attackDistance || transform.position.x - player.transform.position.x > attackDistance)
             MoveToPlayer();
         else
         {
@@ -74,7 +70,6 @@ public class Enemy : MonoBehaviour, IDamagable
             if (attackTime >= attackSpeed)
             {
                 attackTime = 0;
-                print("Nice");
                 Attack();
             }
         }

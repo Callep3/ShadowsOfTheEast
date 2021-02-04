@@ -213,7 +213,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
         {
             shurikenAmount -= 1;
 
-            GameObject shurikenObject = Instantiate(shuriken, attackPoint.position, transform.rotation);
+            GameObject shurikenObject = Instantiate(shuriken, attackPoint.position + new Vector3(0,0.3f,0), transform.rotation);
 
             if (movementScript.IsGrounded())
             {
@@ -231,7 +231,7 @@ public class PlayerCombat : MonoBehaviour, IDamagable
     private void FireBall()
     {
 
-        GameObject fireballObject = Instantiate(fireball, attackPoint.position, transform.rotation);
+        GameObject fireballObject = Instantiate(fireball, attackPoint.position + new Vector3(0, 0.3f, 0), transform.rotation);
 
         if (!movementScript.IsGrounded())
         {
