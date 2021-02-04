@@ -88,7 +88,7 @@ public class Enemy : MonoBehaviour, IDamagable
     private void EnemyScaling()
     {
         maxHealth *= GameManager.Instance.wave;
-        attackDamage *= GameManager.Instance.wave;
+        attackDamage *= (GameManager.Instance.wave * 2);
     }
 
     private void MoveToPlayer()
