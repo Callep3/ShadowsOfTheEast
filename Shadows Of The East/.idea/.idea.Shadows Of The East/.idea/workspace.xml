@@ -20,13 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64d1e807-6372-4b54-b9ac-bc9922c7aeef" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Shadows Of The East/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Shadows Of The East/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Shadows Of The East/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Shadows Of The East/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Zombies/Enemy 1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Zombies/Enemy 1.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerCombat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerCombat.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SpawnManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SpawnManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Envoirement/spoopyy boj1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Envoirement/spoopyy boj1.prefab" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +36,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MainMenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SpawnManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ButtonBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -52,13 +47,15 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/RedLotus.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ScoreManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HUD.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/UpgradePanelScript.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Enemy.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Boss.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SpawnManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerCombat.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameOverScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UpgradePanelScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UpgradeButtons.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ButtonBehaviour.cs" />
       </list>
     </option>
   </component>
@@ -106,7 +103,7 @@
       <updated>1612266961822</updated>
       <workItem from="1612266981749" duration="4698000" />
       <workItem from="1612343659908" duration="14554000" />
-      <workItem from="1612429764120" duration="2587000" />
+      <workItem from="1612429764120" duration="5008000" />
     </task>
     <servers />
   </component>
@@ -131,6 +128,10 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="753" y="222" key="RiderGenerateDialog" timestamp="1612434094348">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="753" y="222" key="RiderGenerateDialog/0.0.1920.1080/1920.0.1920.1040@0.0.1920.1080" timestamp="1612434094348" />
     <state x="127" y="130" width="1644" height="782" key="VCS.FileHistoryDialog" timestamp="1612274869658">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
