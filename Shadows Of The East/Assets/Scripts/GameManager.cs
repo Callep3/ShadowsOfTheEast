@@ -89,8 +89,8 @@ public class GameManager : MonoBehaviour
 
     private void CalculateNumberOfEnemiesToSpawn()
     {
-        numberOfEnemiesToSpawn = (int) (baseEnemiesPerWave * (enemyNumberIncreasePerWaveConstant * wave));
-        numberOfBossesToSpawn = (int) (wave / 3) + 1;
+        numberOfEnemiesToSpawn = (int) (baseEnemiesPerWave + (enemyNumberIncreasePerWaveConstant * wave));
+        numberOfBossesToSpawn = (int) (wave / 3);
     }
 
     private IEnumerator EnemySpawner()

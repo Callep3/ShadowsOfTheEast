@@ -24,15 +24,17 @@
           <e p="ButtonBehaviour.cs" t="Include" />
           <e p="Enemy.cs" t="Include" />
           <e p="EnemySound.cs" t="Include" />
+          <e p="FlyingEnvironmentSpawnManager.cs" t="Include" />
+          <e p="FlyingMovement.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="GameOverScript.cs" t="Include" />
-          <e p="GhostMovement.cs" t="Include" />
-          <e p="GhostSpawnManager.cs" t="Include" />
           <e p="HUD.cs" t="Include" />
           <e p="IDamagable.cs" t="Include" />
           <e p="MainMenu.cs" t="Include" />
+          <e p="PlayerAnimations.cs" t="Include" />
           <e p="PlayerCombat.cs" t="Include" />
           <e p="PlayerMovement.cs" t="Include" />
+          <e p="PlayerSound.cs" t="Include" />
           <e p="PowerupManager.cs" t="Include" />
           <e p="RedLotus.cs" t="Include" />
           <e p="ScoreManager.cs" t="Include" />

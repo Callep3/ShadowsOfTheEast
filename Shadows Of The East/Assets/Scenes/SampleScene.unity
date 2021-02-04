@@ -5378,6 +5378,10 @@ PrefabInstance:
       propertyPath: enemyMinSpawnCooldown
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 2106112522499035402, guid: a4a1c3b534b065d4e9a4e30802e02421, type: 3}
+      propertyPath: enemyNumberIncreasePerWaveConstant
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4a1c3b534b065d4e9a4e30802e02421, type: 3}
 --- !u!1001 &2363888481741435216
