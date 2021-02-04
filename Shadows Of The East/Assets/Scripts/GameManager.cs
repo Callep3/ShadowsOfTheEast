@@ -44,7 +44,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         NextWave();
-        doneSpawning = false;
     }
 
     private void GetComponents()
@@ -125,14 +124,11 @@ public class GameManager : MonoBehaviour
     public IEnumerator ForceNextWave(int currentWave)
     {
         yield return new WaitForSeconds(baseTimePerWave + timePerWave * wave);
-        if (wave != currentWave)
+        if (wave == currentWave)
         {
-            doneSpawning = false;
-        }
-        else
             doneSpawning = true;
-        
-        NextWave();
+            NextWave();
+        }
     }
     #endregion
 

@@ -156,10 +156,6 @@ public class Enemy : MonoBehaviour, IDamagable
         if (SpawnManager.Instance.numberOfEnemies <= 0)
         {
             GameManager.Instance.NextWave();
-            if (GameManager.Instance.doneSpawning)
-            {
-                GameManager.Instance.doneSpawning = false;
-            }
         }
 
         ScoreManager.Instance.ShakeCamera();
