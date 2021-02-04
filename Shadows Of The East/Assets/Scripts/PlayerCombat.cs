@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour, IDamagable
@@ -272,6 +273,8 @@ public class PlayerCombat : MonoBehaviour, IDamagable
         if (!isDead)
         {
             health -= damageAmount - defence;
+            GetComponent<SpriteRenderer>().color = Color.red;
+            GetComponent<SpriteRenderer>().DOColor(Color.white, 0.2f);
             soundScript.OnGettingHit();
             hud.UpdateHealth();
             if (health <= 0)
