@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 2355988298075591259}
   - component: {fileID: 2355988298075591257}
   - component: {fileID: 2355988298075591258}
-  - component: {fileID: 2355988298075591252}
   - component: {fileID: 3158824783728663576}
   - component: {fileID: -3348174688350031960}
+  - component: {fileID: 861496815700784224}
+  - component: {fileID: 6585063244698736980}
   m_Layer: 6
   m_Name: Boss 1
   m_TagString: Enemy
@@ -31,8 +32,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2355988298075591253}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.61, y: -1.32, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -100,7 +101,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -119,7 +120,7 @@ Animator:
   m_GameObject: {fileID: 2355988298075591253}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d7c1b0823d50df543b8aed8e7809c46f, type: 2}
+  m_Controller: {fileID: 9100000, guid: d26bcddb596d23d418df02d84508a723, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -154,27 +155,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.748754, y: 2.1569467}
   m_EdgeRadius: 0
---- !u!114 &2355988298075591252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2355988298075591253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbe29e61118db8c4ab38e30aacf70b20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.25
-  attackSpeed: 0.5
-  powerUpDropYOffset: 2
-  attackDistance: 2.5
-  zombieAnimation1: {fileID: 0}
-  zombieAnimation2: {fileID: 0}
-  soundScript: {fileID: -3348174688350031960}
-  attackDamage: 50
-  maxHealth: 150
 --- !u!82 &3158824783728663576
 AudioSource:
   m_ObjectHideFlags: 0
@@ -286,7 +266,44 @@ MonoBehaviour:
   minimumTimeBeforeMoan: 3
   maximumTimeBeforeMoan: 10
   timerUntilNextMoan: 0
-  moanClip: {fileID: 0}
-  gettingHitSound: {fileID: 0}
-  attackSound: {fileID: 0}
-  dyingSound: {fileID: 0}
+  moanClip: {fileID: 8300000, guid: 90b2e6ada85c69144b86e18bc8e956a4, type: 3}
+  gettingHitSound: {fileID: 8300000, guid: 7284e5339c39188439d9a944b3bd51e6, type: 3}
+  attackSound: {fileID: 8300000, guid: 6e2aead737a987940b7d158117a0b78b, type: 3}
+  dyingSound: {fileID: 8300000, guid: 761dd2b01b619ac4a861f433b33714a8, type: 3}
+--- !u!114 &861496815700784224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2355988298075591253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b36f6c81910e949a64566289af429e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.5
+  attackSpeed: 1.75
+  powerUpDropYOffset: 2
+  attackDistance: 3
+  soundScript: {fileID: -3348174688350031960}
+  boxOffset: {x: 1.5, y: -1}
+  boxSize: {x: 2, y: 2}
+  attackDamage: 12
+  maxHealth: 30
+--- !u!58 &6585063244698736980
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2355988298075591253}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.19609311, y: 0.38327676}
+  serializedVersion: 2
+  m_Radius: 0.87393975

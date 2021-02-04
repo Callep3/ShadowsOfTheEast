@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class Enemy : MonoBehaviour, IDamagable
 {
     [SerializeField] private float speed = 1;
-    [SerializeField] private float attackSpeed = 1; //Seconds
+    [SerializeField] private float attackSpeed = 1.75f; //Seconds
     [SerializeField] private float powerUpDropYOffset = 2f;
     [SerializeField] private float attackDistance = 1;
     [SerializeField] private EnemySound soundScript;
@@ -37,7 +37,6 @@ public class Enemy : MonoBehaviour, IDamagable
         torque = Random.Range(-180, 180);
         animator = GetComponent<Animator>();       
         animator.SetInteger("ZombieType", Random.Range(0, 2));
-
         EnemyScaling();
         RandomSize();
     }

@@ -1,18 +1,18 @@
 using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UIElements;
-using Random = UnityEngine.Random;
 
-public class Boss : MonoBehaviour, IDamagable
+public class Enemy : MonoBehaviour, IDamagable
 {
     [SerializeField] private float speed = 1;
     [SerializeField] private float attackSpeed = 1.75f; //Seconds
     [SerializeField] private float powerUpDropYOffset = 2f;
     [SerializeField] private float attackDistance = 1;
     [SerializeField] private EnemySound soundScript;
-    [SerializeField] private Vector2 boxOffset;
-    [SerializeField] private Vector2 boxSize;
+    [SerializeField] private Vector3 boxOffset;
+    [SerializeField] private Vector3 boxSize;
 
     private Animator animator;
     private Rigidbody2D rb;
@@ -20,27 +20,34 @@ public class Boss : MonoBehaviour, IDamagable
 
     private GameObject player;
 
-    [SerializeField] private int attackDamage = 6;
+    [SerializeField] private int attackDamage = 2;
     private float hitCooldown = 0;
     private float attackTime = 0;
-    [SerializeField] private float maxHealth = 9;
+    [SerializeField] private int maxHealth = 3;
     private float currentHealth = 0;
     private int facing;
 
-    private bool isVisible;
     private bool dead;
-
+    private bool isVisible;
     private void Start()
     {
-        EnemyScaling();
         currentHealth = maxHealth;
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         torque = Random.Range(-180, 180);
+        animator = GetComponent<Animator>();       
+        animator.SetInteger("ZombieType", Random.Range(0, 2));
 
-        animator = GetComponent<Animator>();
-        int random = Random.Range(0, 2);
-        Debug.Log(random);
+        EnemyScaling();
+        RandomSize();
+    }
+
+    private void RandomSize()
+    {
+        float randomSize = Random.Range(0.75f, 1.30f);
+        transform.localScale = new Vector2(randomSize, randomSize);
+        maxHealth = Mathf.RoundToInt(maxHealth * randomSize);
+        attackDamage = Mathf.RoundToInt(attackDamage * randomSize);
     }
 
     private void Update()
@@ -63,7 +70,7 @@ public class Boss : MonoBehaviour, IDamagable
             MoveToPlayer();
         else
         {
-            attackTime += Time.deltaTime * 1f;
+            attackTime += Time.deltaTime;
 
             if (attackTime >= attackSpeed)
             {
@@ -120,16 +127,21 @@ public class Boss : MonoBehaviour, IDamagable
             currentHealth = maxHealth;
         }
 
-        if (currentHealth - Damage > 0)
+        if (isVisible)
         {
-            currentHealth -= Damage;
-            soundScript.GotHit();
-        }
-        else
-        {
-            //aniamtion
-            Die();
-            soundScript.Died();
+            if (currentHealth - Damage > 0)
+            {
+                currentHealth -= Damage;
+                GetComponent<SpriteRenderer>().color = Color.red;
+                GetComponent<SpriteRenderer>().DOColor(Color.white, 0.2f);
+                soundScript.GotHit();
+            }
+            else
+            {
+                //aniamtion
+                Die();
+                soundScript.Died();
+            }
         }
     }
 
@@ -176,7 +188,6 @@ public class Boss : MonoBehaviour, IDamagable
 
         rb.constraints = RigidbodyConstraints2D.None;
         Destroy(GetComponent<BoxCollider2D>());
-        Destroy(GetComponent<CircleCollider2D>());
 
         if (PlayerPosition.x > EnemyPosition.x)
         {
@@ -204,9 +215,9 @@ public class Boss : MonoBehaviour, IDamagable
         Vector3 facingAttack;
 
         if (facing == 1)
-            facingAttack = new Vector2(-boxOffset.x, boxOffset.y);
+            facingAttack = new Vector2(-0.22f, 0.22f);
         else if (facing == -1)
-            facingAttack = new Vector2(boxOffset.x, boxOffset.y);
+            facingAttack = new Vector2(0.22f, 0.22f);
         else
             return;
 
@@ -218,8 +229,8 @@ public class Boss : MonoBehaviour, IDamagable
 
     private IEnumerator AttackAtFrame(Vector3 facingAttack)
     {
-        yield return new WaitForSeconds(1.5f); 
-        RaycastHit2D[] hit2D = Physics2D.BoxCastAll(new Vector2(transform.position.x, transform.position.y) + (Vector2)facingAttack, boxSize, 0f, new Vector2(0,0));
+        yield return new WaitForSeconds(1); 
+        RaycastHit2D[] hit2D = Physics2D.BoxCastAll(new Vector2(transform.position.x, transform.position.y) + (Vector2)facingAttack, new Vector2(1.55f, 2), 0f, new Vector2(0,0));
         foreach (RaycastHit2D rayhit in hit2D)
         {
             if (rayhit.collider.CompareTag("Player"))
@@ -227,5 +238,21 @@ public class Boss : MonoBehaviour, IDamagable
                 rayhit.collider.GetComponent<IDamagable>().TakeDamage(attackDamage);
             }
         }
+    }
+
+    private void OnBecameVisible()
+    {
+        StartCoroutine(DelayVisable());
+    }
+
+    IEnumerator DelayVisable()
+    {
+        yield return new WaitForSeconds(0.5f);
+        isVisible = true;
+    }
+
+    private void OnBecameInvisible()
+    {
+        isVisible = false;
     }
 }
