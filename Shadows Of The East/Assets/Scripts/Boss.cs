@@ -22,7 +22,7 @@ public class Boss : MonoBehaviour, IDamagable
 
     [SerializeField] private int attackDamage = 6;
     private float hitCooldown = 0;
-    private float attackTime = 0;
+    private float attackTime = 1;
     [SerializeField] private float maxHealth = 9;
     private float currentHealth = 0;
     private int facing;
