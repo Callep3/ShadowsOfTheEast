@@ -13,6 +13,8 @@ public class UpgradePanelScript : MonoBehaviour
     public int lightAttackIncrease = 5;
     public int heavyAttackIncrease = 10;
     public int throwDamageIncrease = 3;
+    
+    public int defenceIncrease = 10;
 
     public int healthIncrease = 20;
     #region ButtonFunctionality
@@ -38,7 +40,7 @@ public class UpgradePanelScript : MonoBehaviour
     
     public void DefenceUpButton()
     {
-        playerCombat.defence += 5;
+        playerCombat.defence += 10;
         
         UpgradeButtons();
     }
