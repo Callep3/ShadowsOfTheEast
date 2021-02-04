@@ -106,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
             PlayerPositionX += lastDirection * dashDistance;
             StartCoroutine(DashTrail());
             dashCooldownTimer = dashCooldown;
-            stamina -= dashStaminaCost;
+            stamina -= Mathf.Clamp(dashStaminaCost - staminaReduction,0,maxStamina);
             animScript.OnDash();
             hud.UpdateMana();
         }

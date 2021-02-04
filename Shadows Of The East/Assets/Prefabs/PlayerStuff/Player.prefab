@@ -145,10 +145,11 @@ MonoBehaviour:
     m_Bits: 64
   hud: {fileID: 0}
   gameOver: {fileID: 0}
+  screenFlash: {fileID: 0}
   lightAttackDamage: 5
   lightAttackCooldown: 0.5
   heavyAttackDamage: 10
-  heavyAttackCooldown: 0.8
+  heavyAttackCooldown: 0.9
   maxHealth: 20
   health: 20
   defence: 0
@@ -159,6 +160,7 @@ MonoBehaviour:
   shurikenAmount: 100
   fireball: {fileID: 7068274170254247905, guid: 264c6d40a5b7e6543ac9fa5080fcda98, type: 3}
   fireDamage: 80
+  fireBallCost: 30
   fireCooldown: 5
   fireCooldownTimer: 0
   fireSpeed: 10
@@ -177,10 +179,10 @@ MonoBehaviour:
   hud: {fileID: 0}
   animScript: {fileID: 6194516270914461403}
   maxStamina: 100
-  staminaPerSecond: 5
+  staminaPerSecond: 7
   stamina: 0
   speed: 5
-  dashDistance: 5
+  dashDistance: 3
   dashCooldown: 4
   dashStaminaCost: 25
   dashTrailObject: {fileID: 6882484777916909501}
@@ -452,7 +454,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: 5a9d91e174f0ebb4280e370f5a2ecc86, type: 3}
+  m_Sprite: {fileID: -5997498934523228170, guid: 531264b57b9a70c458202967b962bbbc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
