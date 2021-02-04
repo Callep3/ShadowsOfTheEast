@@ -229,4 +229,10 @@ public class Enemy : MonoBehaviour, IDamagable
             }
         }
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawCube(transform.position + boxOffset, boxSize);
+    }
 }
